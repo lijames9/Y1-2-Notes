@@ -1,0 +1,180 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[legalpaper, portrait, margin=1in]{geometry}
+\usepackage{soul}
+\usepackage[norule]{footmisc}
+\usepackage{multicol,caption}
+\usepackage{subcaption}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{tabu}
+\usepackage[table]{xcolor}
+\usepackage{pdflscape}
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{subfiles}
+\usepackage{afterpage}
+\usepackage{filecontents}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{minted}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy} %creates header
+\lhead{Holography \\ PHY294}
+\rhead{James Li \\ Claire Zhang}
+
+\DeclareCaptionType{equ}[][]
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.9em}
+
+\setlength{\columnsep}{1cm}
+
+\setlength{\droptitle}{-5em} %removes extra whitespace in title
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.9em}
+
+\title{\textbf{Holography} \vspace{-1em}}
+\author{James Li (1007974248) \\
+Claire Zhang (1008001822)}\vspace{-2em}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy} %gives a header on whatever page you choose
+\section{Introduction}
+
+Holography is a photographic technique discovered by Dennis Gabor in the 1940s that utilizes the scattering of laser light to reconstruct a three-dimensional image. The process of image reconstruction occurs when a beam of light is split into two optical paths, known as the reference and the object beam. As such, the two wavefronts will create an interference pattern with one another resulting in a combination of both destructive and constructive interference. Now, when placing an object in front of an optical path, the light's interference pattern will be disturbed according to the object's spatial configuration. By capturing the disturbance of the interference pattern caused by the object, a photographic plate or film can record all of the information about the object's wavefront, which is known as a hologram.
+
+In this experiment, a single-beam, laser-light reflection hologram is being produced, which is different from other holograms because the single-beam hologram does not split the beam of light before reaching the object. Instead, the initial beam of light (the reference beam) will first pass through the photographic plate and hit the object, which is placed behind the plate. Then, the beam reflected off the object (the object beam) will create an interference pattern with the reference beam, and this pattern is captured by the photographic film, capturing both the intensity and phase of the light. The plate is placed at Brewster's angle to minimize interference from light that does not pass through the plate but rather reflected off its surface, creating unwanted interference patterns.
+
+The complete spatiotemporal information in the hologram can be observed by the human eye due to the parallax effect. The parallax effect occurs when a viewer changes their position relative to the holographic image, causing the image to appear to change, similar to as if the viewer were observing the object in real time. This is explained by the photographic film on the hologram plate capturing the intensity and phase of the light, rather than just the intensity: the phase of the light waves is the measure of their position in time, relative to each other. That is how the illusion of depth and realism is created by the holographic image, known as the parallax effect.
+
+\section{Experimental Setup}
+
+\subsection{Materials}
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|p{3.5cm}|p{4cm}|p{3cm}|p{3cm}|}
+            \multicolumn{4}{c}{\textbf{Materials List}}\\
+            \hline
+            5 mW He-Ne laser device & Electro-Mechanically Operated Shutter & 10x Microscope Objective Lens & 25 $\mu$m pinhole  \\
+            \hline
+            Emulsion Plate & Dummy Plate & Mirror & Object to Capture on Plate \\
+            \hline
+        \end{tabular}
+        \caption{List of Materials used in the Holography experiment.}
+        \label{tab:my_label}
+\end{table}
+
+\subsection{Laser Light Setup}
+
+First, maintain a clean and vibration-free beam path, by ensuring that the shutter, spatial filter stand, plate holders and mirror are anchored as close to the table as possible. Next, specifically adjust the plate holder at a 45$^{\circ}$ (approximately the Brewster) angle to the incident beam and 1m away from the spatial filter (See Figure \ref{fig:Setup}). Measure the light intensity produced by the 5 mW He-Ne laser device with the sensor at the midpoint between the spatial filter and plate holder. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/holo setup.png}
+    \caption{Experimental Setup with Labels}
+    \label{fig:Setup}
+\end{figure}
+
+Using the tilt control knobs, make sure the laser beam reflected off the mirror goes directly into the microscope lens and pinhole on the spatial filter. It is important to adjust until there is no diffraction or any observable interference patterns; position a blank piece of paper in front of the plate holder to see the beam shape and adjust the mirror and pinhole accordingly. Tilt the mirror until the beam is in the center of the plate. Use the control knobs to move the pinhole to the focal point of the lens where there are no rings around the circular beam, achieving a uniform field (Figure \ref{fig:focalpoint} and \ref{fig:uniform}). When changing the x-y position, notice that a proper uniform field has continuous smears (not choppy rings). Measure the beam light intensity again to confirm that it retains 70-90\% of its intensity after the pinhole installation. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{pics/FP.png}
+        \caption{Diagram detailing how to find the focal point of the lens.}
+        \label{fig:focalpoint}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.7\textwidth]{pics/uniform.png}
+        \caption{Image showing the continuous smearing of the laser beam on the paper surface; this indicates the lens achieving focus.}
+        \label{fig:uniform}
+    \end{subfigure}    
+\end{figure}
+
+\subsection{Emulsion Plate Development}
+
+To properly load the plate, make sure there are no extraneous light sources, the glass side is facing the mirror and the emulsion side is facing the bright object, and the object is placed as close to the inserted plate without touching it (avoid fingerprints on the plate as well). After practicing properly installing the dummy plate in the dark, a real emulsion plate was exposed to the laser beam during a 3 second shutter time interval. Next, the hologram plate was activated with the Kodak D-19 developer solution, the fixer solution and rinsed to prepare for viewing. 
+
+\section{Results and Data Analysis}
+
+
+\subsection{Method of Visualization}
+
+To view the image, use an unfrosted filament bulb as a point light source. By tilting the hologram in front of the light source at different angles, an image of colder colors (blue, violet, green) will appear (see Figure \ref{fig:my_label}). Cold colors correspond to shorter wavelengths due to the film shrinking throughout processing; the initial red laser with a wavelength of 632.8 nm is reduced by 50 to 100 nm. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/hologram.png}
+    \caption{How to view the hologram after its preparation.}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Sources of Error}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/photoplate.png}
+    \caption{Image of the Emulsion Plate after the development; the darkness of the plate is explained by overexposure to light.}
+    \label{fig:plate}
+\end{figure}
+
+Sources of error that will affect the quality of image include the cleanliness of the pinhole, lens and mirror; fingerprints, dirt and dust may collect on the surface of these experimental materials. Additionally, if the shutter time is too long or if the undeveloped emulsion plate is exposed to unwanted light, the film will be over exposed and the resulting hologram will be completely dark (Figure \ref{fig:plate}). Furthermore, while adjusting the pinhole, if it is not positioned at the focal point, the spatial noise from interference and diffraction will result in a nonuniform beam. Vibrations from the table and unanchored materials are also a contributor to unwanted noise. 
+
+\subsection{Latent versus Holographic Imaging}
+
+There are 2 major differences between holographic and latent imaging: the photo forming reaction to light after exposure and dimensionality (3 or 2). For latent images on photographic film, exposure to light causes a chemical change in the silver halide crystals in the film's emulsion layers corresponding to the intensity of the incident light. Rather than a chemical change, holographic images are created via interference patterns of light waves hitting the emulsion plate; the constructive and destructive patterns are a result of the initial beam combining with reflected light off of the object being captured. While both undergo chemically altering development processes, the final result is two dimensional for latent images and three dimensional for holographic. Latent imaging only captures the intensity of light, which results in a 2D image, whereas holograms capture both intensity and phase of the light waves resulting in 3D imaging.
+
+\subsection{Shattering the Hologram}
+
+If a hologram were shattered into smaller pieces, one could still see the entirety of the holographic image, but the frame of reference and image resolution would differ between each piece. Similar to a window, different sizes of frames require different viewing angles for optimal visibility. One piece of the hologram may not have all viewing angles of the image, resulting in limited view points. Additionally, as the size of the hologram approaches the wavelength of light used to create it, the resolution decreases. Overall, the original hologram provides the fullest perspective (most amount of viewing angles) and highest resolution of the image. 
+
+\subsection{Image Reconstruction}
+
+A single (broken-off) piece of the hologram has the ability to reconstruct the entire 3D structure because of the hologram capturing both the intensity and phase of interfering light waves during exposure. The plate captures the interference pattern, which is distributed uniformly throughout the plate - this means that every point of the plate contains spatiotemporal information regarding the light wave captured. As such, when even a single, broken-off piece of the hologram is illuminated, the original object wavefront can be recreated, despite only a portion of the interference pattern being used.
+
+
+
+
+\section{Conclusion}
+
+In conclusion, this experiment aimed to recreate a single-beam, laser-light hologram using a 5 mW He-Ne laser-light to shine an object, recording the light beam's interference pattern on an emulsion plate. The hologram that had been captured could not reproduce the original image since it had been overexposed to light. However, had this not occurred, the results could explain the three-dimensional nature of the image captured on the plate, as opposed to the flat, two-dimensional nature of a photograph through the concept of holographic versus latent imaging. Furthermore, upon shattering the original emulsion plate, the original object wavefront can be still be recreated due to the plate capturing both intensity and phase of the light wave through its interference pattern.
+
+\vfill\pagebreak
+
+\appendix
+
+\begin{thebibliography}{2}
+    \bibitem{labmanual} P. Albanelli, S. Fomichev, \textit{Holography}, 2014.
+\end{thebibliography}
+\end{document}
