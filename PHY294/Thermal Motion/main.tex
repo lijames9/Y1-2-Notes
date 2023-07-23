@@ -1,0 +1,697 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[legalpaper, portrait, margin=0.7in]{geometry}
+\usepackage{multicol,caption}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{tabu}
+\usepackage[table]{xcolor}
+\usepackage{pdflscape}
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{subfiles}
+\usepackage{afterpage}
+\usepackage{filecontents}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{minted}
+
+\DeclareCaptionType{equ}[][]
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.9em}
+
+\sectionfont{\fontsize{11}{15}\selectfont}
+\subsectionfont{\fontsize{11}{15}\selectfont}
+\setlength{\columnsep}{1cm}
+
+\title{\textbf{Thermal Motion}}
+\author{James Li (1007974248) & Claire Zhang (1008001822)}\vspace{-2em}
+\date{\today}
+
+\renewenvironment{abstract}
+ {\small
+  \begin{center}
+  \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
+  \end{center}
+  \list{}{
+    \setlength{\leftmargin}{0cm}%
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \item\relax}
+ {\endlist}
+
+\begin{document}
+
+\maketitle
+
+\linespread{1}
+
+\section{Introduction}
+
+Brownian motion, as coined in 1828 by Robert Brown, is the random movement of a particle in fluid as a result of surrounding viscous forces interfering with its velocity, position, and thermal energy. Without observing the motion of a Brownian particle, Einstein postulated that microscopically visible particles suspended in a fluid will undergo a similar random motion that can be observed as per the molecular-kinetic theory of heat. According to Einstein's 1905 paper regarding the molecular-kinetic theory of heat, this molecular motion is a result of heat generated in the fluid. In addition, he postulated that the motion of the particles of following the molecular-kinetic theory of heat were identical to the motion of a Brownian particle, leading to the motivation behind the experiment.
+
+When a microscopically visible particle is placed in a fluid, fluid molecules erratically collide with the particle, resulting in a force that evidently changes the velocity of the particle. However, this velocity is immediately dampened by the viscous forces of the fluid acting on the particle. By nature, the direction and magnitude in which the collisions occur is random \textbf{--} in a sense that the prior collision with the particle has no effect on the following collision. Thus, the particle will undergo a "random walk", formally denoted as Brownian motion.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.88]{pics/bm.png}
+    \caption{The left figure tracks the mean squared displacement, $\langle R^2 \rangle$, of all 10 of the Brownian particles. The right figure tracks the position of a Brownian particle in Cartesian coordinates over the elapsed time.}
+    \label{fig:my_label}
+\end{figure}
+
+Following this discovery, Einstein also theoretically proved that the mean squared displacement of the Brownian particle increased linearly with time, denoted by:
+
+\begin{equ}[!ht]
+  \begin{equation}
+    \langle x^2\rangle = 2Dt \label{eq:meansq}
+  \end{equation}
+\end{equ}
+\noindent where D is the diffusion coefficient and t is the time elapsed.
+
+Newton's Second Law of motion for the microscopically visible particle relates the net force with the viscous drag force and a postulated thermal force.
+
+\begin{equation}
+    m\frac{d^2x}{dt^2} = -\gamma\frac{dx}{dt} + X \label{eq:N2L}
+\end{equation}
+
+Solving Equation \ref{eq:N2L} will yield Einstein's relation, relating the diffusion coefficient with Boltzmann's constant, $k$, temperature, T, and Stokes' drag:
+
+\begin{equation*}
+   \frac{d(x)^2}{dt} = \frac{2kT}{\gamma}t \hspace{1.5em} \longrightarrow \hspace{1.5em} \langle x^2\rangle = \frac{2kT}{\gamma}
+\end{equation*}
+
+Setting Equation \ref{eq:meansq} equivalent to the expression above:
+\begin{equation*}
+   2Dt = \frac{2kT}{\gamma}
+\end{equation*}
+
+\begin{equation}
+   D = \frac{kT}{\gamma} \label{eq:diffusion}
+\end{equation}
+
+\begin{equation}
+    \gamma = 6\pi\eta r \label{eq:stokes}
+\end{equation}
+
+The experimental objective of this lab is to study the Brownian motion of polystyrene beads under a fluorescence-illuminated microscope by tracking the change in position of particle for a period of time. As such, Boltzmann's constant and Avogadro's number can be experimentally obtained using two methods \textbf{--} a linear fit (1D "random walk") and a Rayleigh distribution curve fitting.
+
+In addition, when fitting the motion of the bead to a Rayleigh distribution in Method 2, it is important to note that the probability distribution function of determining the distance of a particle travelled over a time interval t can be represented as a 2D Gaussian distribution.
+
+\begin{equation*}
+    P(x,y;t) = \frac{1}{4\pi Dt}e^{-\frac{x^2+y^2}{4Dt}}
+\end{equation*}
+After simplifying with polar coordinates where $r^2 = x^2 + y^2$, the Gaussian Distribution can be expressed as:
+
+\begin{equation}
+    P(r;t) = \frac{1}{4\pi Dt}e^{-\frac{r^2}{4Dt}} \label{eq:2Dgaussian}
+\end{equation}
+
+By applying a Maximum Likelihood Estimation, the value of D can be calculated using Python code, and as such, the Boltzmann's Constant can be determined.
+
+In short, the purpose of this report details the experimental calculation of the Boltzmann's constant (k) by finding the diffusion coefficient (D) using 2 methods: a linear distribution and Rayleigh distribution. Then, the calculated results are validated with Avogadro's number to verify its accuracy. 
+
+\section{Procedure}\label{sec:Procedure}
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|p{3.5cm}|p{2.5cm}|p{4cm}|p{4cm}|}
+            \multicolumn{4}{c}{\textbf{Materials List}}\\
+            \hline
+            Microscope Slide and Cover & Pipette & Double-Sided Tape & Petroleum Jelly  \\
+            \hline
+            Water-Diffused Polystyrene Bead Solution & Microscope & Fluorescence Illumination (X-Cite Box) & LabView and Image Object Tracker\\
+            \hline
+        \end{tabular}
+        \caption{List of Materials used in Thermal Motion experiment.}
+        \label{tab:my_label}
+\end{table}
+\begin{itemize}
+    \item Pixel Resolution of LabView (and its error \textbf{---} see Figure \ref{fig:pixelconv}): 1 pixel = 0.12048 $\mu$m $\pm$ 0.003 $\mu$m
+    \item Reading Error of Image Object Tracker when choosing the center of bead tracked: The uncertainty of the radius of the bead can postulated as half the radius since when choosing the center of the bead manually, the location is likely to be within a half-radius distance away from the center at all times, thus $\bm{r_b = 0.95 \pm 0.48 \mu m}$.
+\end{itemize}
+\subsection{Data Collection Method}
+
+See Table \ref{tab:my_label} for materials mentioned in the procedure below.
+
+To prepare the microscope slide for inspection, first, firmly lay two parallel 4 cm-long pieces of double sided tape 2 cm apart, no creases or air bubbles. Then, perpendicular to the tape, place 2 lines of petroleum jelly to create a 4 cm by 2 cm rectangular barrier. Next, using the pipette, put 50 µl of the bead solution into the sealed slide space and place a cover glass over the space; make sure to avoid fingerprints on the cover. 
+
+To collect data on the microscope (see Figure \ref{fig:microscope}), switch on fluorescence illumination (X-Cite box), increase the illumination intensity, initialize the phase ring to (Ph1) and place the sample on the microscope stage. Using LabView phase microscopy on the computer, digitally focus the microscope on a bright bead point on the dark green background by adjusting “Gain Value” and “Brightness Values”. Then, start the Microscope Camera Controller on Multiple Image Capture mode with 120 images per 2 second frames; for undisturbed data, avoid choosing beads in close proximity to others to avoid path interference. Next, using the Image Object Tracker computer application, select the center of the bead and record the x/y pixel values of the moving bead at each frame. These are the same (x,y) values recorded as raw data in Appendix  and Data (Section \ref{sec:extrapics}).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.6]{pics/materials_2.png}
+    \includegraphics[scale = 0.6]{pics/materials_1.png}
+    \includegraphics[scale = 0.6]{pics/materials_3.png}
+    \caption{Materials used in procedure.}
+    \label{fig:microscope}
+\end{figure}
+
+\section{Analysis}
+\subsection{Data Analysis Methods}
+
+After repeating steps 6-8, collecting data for 10 different beads. There are two methods of solving for Boltzmann’s constant, k \textbf{---} 1.380649 $\times10^{-23} \frac{\text{J}}{\text{K}}$.
+\subsubsection*{Method 1: 1D Random Walk}
+
+One way to interpret Brownian motion is to picture particles on a "random walk" where at each time step $\tau$, the particles move a distance $\delta$ either left or right with equal probability. To determine the position of the i-th particle within the sample space after n steps can be expressed as:
+
+\begin{equation*}
+    x_i(n) = x_i(n-1) \pm \delta
+\end{equation*}
+
+Now, if one were to determine the average position of the sample space of particles, one can express it as a summation of the above equation divided by the total number of particles, N.
+
+\begin{equation}
+    \langle x(n) \rangle = \frac{1}{N}\sum_{i=1}^Nx_i(n-1) \pm \delta \label{eq:avgparticle}
+\end{equation}
+
+The $\pm\delta$ term can be neglected in this expression as it is a constant with equal probability of being positive and negative. Thus, taking the average of that term would result in a zero sum and evaluating the sum would eventually result in an expression as such:
+
+\begin{equation*}
+    \frac{1}{N}\sum_{i=1}^Nx_i(n-1) \pm \delta = \frac{1}{N}\sum_{i=1}^Nx_i(n-1) = \langle x(n-1) \rangle
+\end{equation*}
+
+Using Equation \ref{eq:avgparticle}, the average squared displacement can be determined by simply squaring the expression $\langle x(n) \rangle$, where, once again, the term following the $\pm$ will result in a zero sum due to the equal probability of its result being positive or negative:
+
+\begin{equation}
+    \langle x^2(n) \rangle = \frac{1}{N}\sum_{i=1}^Nx^2_i(n-1) \pm 2\delta x_i(n-1) + \delta^2 = \langle x^2(n-1) \rangle + \delta^2 = n\delta^2 \label{eq:avgsq}
+\end{equation}
+
+Knowing that t = n$\tau$, Equation \ref{eq:avgsq} can be rearranged to prove Einstein's theory of linear time dependence:
+
+\begin{equation*}
+    \langle x^2(n) \rangle = \frac{\delta^2}{\tau}t = 2Dt
+\end{equation*}
+
+This method verifies Einstein's theory of Brownian Motion by plotting the motion of a bead. The mean squared displacement is the average of all the squared change in position the particle travels each frame (Equation \ref{eq:avgsq}). By plotting the mean squared displacement against time, the graph has a linear fit that follows Equation \ref{eq:meansq}, where D represents the slope of the linear fit. To determine the diffusion constant, D, through the fit, divide the slope of the line of best fit by 2. Then substitute D, $\eta$, r, and T into Equations \ref{eq:diffusion} and \ref{eq:stokes} and rearrange to solve for k, assuming Stokes drag,  $\gamma$ = 6$\pi\eta r$. The diameter of the bead is given in the lab manual \cite{labmanual} as 1.9$\mu$m, then the radius r can be calculated to be 0.95 $\pm$ 0.1$\mu$m. The viscosity, $\eta$, is given as 1.00 $\pm$ 0.05 cP at 20$^\circ$C but decreases 2\% with each degree increase in temperature ($\eta$ = 1.00 - 0.02(T - 293.15)). Therefore, at a temperature of 296.5 $\pm$ 0.5 K (provided in the lab manual \cite{labmanual}), the viscosity used in the final calculations is 0.933 $\pm$ 0.05 cP. The final calculated Boltzmann’s constant, k, value is $\bm{1.5956 \times 10^{-23} \pm 8.026\times 10^{-24} \frac{J}{K}}$ \footnote[1]{This uncertainty was obtained through error propagation calculations with the center of the radius uncertainty defined in Section \ref{sec:Procedure}. The Python script written does not take into account the center of the radius uncertainty and results in an uncertainty of 7.24 $\times 10^{-24}$, which does not fall in the range of the theoretical Boltzmann's constant value and is much smaller than the radius-propagated uncertainty.} using Equation \ref{eq:boltzmann}. 
+
+\begin{equation}
+k = \frac{6D\pi\eta r_b}{T} \label{eq:boltzmann}
+\end{equation}
+
+This value and its uncertainty is consistent and within the theoretical value of k: 1.380649$\times 10^{-23} \frac{J}{K}$. The percent error from the actual value and this lab value is 15.5\%, calculated with the equation written below. Visually and computationally, the data follows a linear fit very well and correctly aligns with Einstein's theory of Brownian motion (Figure 2).
+
+\begin{equation*}
+    \%\text{ error} = \Big|\frac{\text{measured value} - \text{theoretical value}}{\text{theoretical value}}\Big|
+\end{equation*}
+
+The reduced chi-squared value for the residuals shown in Figure 3 is calculated to be 1.64 $\bm{(\chi_{\nu}^2 = 1.64)}$ using the standard Least Squares Method equation: 
+
+\begin{equation}
+    \chi_{\nu}^2 = \frac{1}{\nu}\sum_{i=1}^N\frac{[y_i - f(x_i)]^2}{\sigma_{y_i}^2} \label{chisq} 
+\end{equation}
+
+This reduced chi-squared value reveals that the data collected is a very accurate fit to the linear fit applied. This conclusion drawn can also be explained by the residual plot, Figure \ref{fig:linear_fit_residuals}, where there is little deviation in the positive and negative directions for the whole data set.
+
+See below for the linear fit (Figure \ref{fig:linear_fit}) and its residuals plot (Figure \ref{fig:linear_fit_residuals}).
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.5]{pics/linear_fit.png}
+    \caption{The mean squared distance $\langle R^2\rangle$ plotted in relation to time. The slope of the linear fit (in red) represents the value of the diffusion constant, $\bm{D = 0.2832 \pm  0.0058 \frac{\mu m^2}{s}}$.}
+    \label{fig:linear_fit}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/linear_residual.png}
+    \caption{The accuracy of data to a linear fit. }
+    \label{fig:linear_fit_residuals}
+\end{figure}
+
+\vfill\pagebreak
+
+\subsubsection*{Method 2: Distribution of Steps in a Constant Interval}
+
+This method calculates the diffusion constant by fitting the probability density function to a histogram under a Rayleigh distribution. A Rayleigh distribution is chosen as the most accurate model to represent the x-y data sets for the 2D Brownian motion because 2 independent variables are compared simultaneously. The derivation of the Rayleigh distribution is from integrating the 2D Gaussian distribution (Equation \ref{eq:2Dgaussian}) into its polar form since computing the definite integral of a probability density function provides the probability.
+
+In Cartesian coordinates, we postulate that the probability of locating a particle within a rectangular box of dimensions x = a, y = b, can be expressed as:
+
+\begin{equation*}
+    P(x,y;t) = \int_0^a\int_0^b \frac{1}{4\pi Dt}e^{-\frac{x^2+y^2}{4Dt}}dxdy
+\end{equation*}
+
+Converting the above equation from Cartesian coordinates to polar coordinates yields the following equation, assuming the particle can travel up to a radius R:
+
+\begin{equation*}
+    P(r;t) = \int_0^{2\pi}\int_0^R\frac{r}{4\pi Dt}e^{-\frac{r^2}{4Dt}}drd\theta
+\end{equation*}
+
+Computing the definite integration above with respect to $\theta$ yields the Rayleigh distribution, which represents the probability density function for a 2D diffusion process.
+
+\begin{equation}
+    p(r;t) = \frac{r}{2Dt}e^{-\frac{r^2}{4Dt}} \label{eq:PDF}
+\end{equation}
+
+Measuring 119 distances between 120 frames for 10 particles, a total of 1190 step sizes were recorded. Using the square root rule \cite{SquareRootRule}, the number of bins in the histogram to best fit the Rayleigh distribution is 35. By substituting the Maximum Likelihood Estimation for 2Dt, the histogram data can be fit to the probability density function (Equation \ref{eq:PDF}). 
+
+The Maximum Likelihood Estimation formula is derived from fitting a likelihood function to the Rayleigh distribution. As we seek to maximize the probability of observing a particle, the parameter 2Dt must be minimized as it appears in the denominator of the expression. In statistics, a likelihood function can be generally expressed as:
+
+\begin{equation*}
+    \textbf{L}(x_1, ..., x_n;\mu, \sigma) = n(x_1;\mu, \sigma) ... n(x_n;\mu, \sigma) = \prod_{k=1}^nn(x_k;\mu, \sigma)
+\end{equation*}
+
+This function can be applied to the Rayleigh distribution:
+\begin{equation}
+    \textbf{L}(r; 2Dt) = \prod_{k=1}^Np(r_k;t) = \prod_{k=1}^N\frac{r_k}{2Dt}e^{-\frac{-r_k^2}{4Dt}}
+\end{equation}
+
+Optimizing the likelihood function would require differentiating the function and equating it to zero. Since working with and visualizing the product operator is foreign and complex, the logarithm of both sides must be taken since the natural logarithm of the product operator is simply the summation operator.
+
+\begin{equation}
+    \ln\textbf{L}(r;2Dt) = \ln\big[\prod_{k=1}^N\frac{r_k}{2Dt}e^{-\frac{r_k^2}{4Dt}}\big] = \sum_{k=1}^N\big[\ln(\frac{r_k}{2Dt}e^{-\frac{r_k^2}{4Dt}})\big] = \sum_{k=1}^N\big[\ln(\frac{r_k}{2Dt}) - \frac{r_k^2}{4Dt}\big]
+\end{equation}
+
+Applying properties of logarithms, the expression can be simplified to:
+
+\begin{equation*}
+    \sum_{k=1}^N\big[\ln(\frac{r_k}{2Dt}e^{-\frac{r_k^2}{4Dt}})\big] = \sum_{k=1}^N\big[\ln(\frac{r_k}{2Dt}) - \frac{r_k^2}{4Dt}\big] = \sum_{k=1}^N\ln{r_k} - N\ln(2Dt) - \sum_{k=1}^N\frac{r_k^2}{4Dt}
+\end{equation*}
+
+Finally, applying its derivative and equating it to zero will yield the following expression:
+
+\begin{align}
+    \frac{\partial (\ln\textbf{L})}{\partial(2Dt)} &= -\frac{N}{2Dt}+\frac{1}{2}\sum_{k=1}^N\frac{r_k^2}{(2Dt)^2} = 0 \\N &= \frac{1}{4Dt}\sum_{k=1}^Nr_k^2 \\ (2Dt)_{\text{MLE}} &= \frac{1}{2N}\sum_{k=1}^Nr_k^2 \label{eq:MLE}
+\end{align}
+
+which is the maximum likelihood estimate of the 2Dt term.
+
+When using Python's curve$_\text{fit}$() function in the SciPy library, the number of bins used will alter the calculated D value, even after using the square root rule; for a more accurate result, the Maximum Likelihood Estimation is used (Equation \ref{eq:MLE}) to calculate D. N is the number of bins used to plot the relative frequency histogram, and the radial distance, r, is $\sqrt{x^2 + y^2}$. The final calculated k value is $\bm{1.00025\times 10^{-23} \pm 5.03\times 10^{-24} \frac{J}{K}}$ \footnote[2]{This uncertainty was obtained through error propagation calculations with the center of the radius uncertainty defined in Section \ref{sec:Procedure}. The Python script written does not take into account the center of the radius uncertainty and results in an uncertainty of 1 $\times 10^{-24}$, which does not fall in the range of the theoretical Boltzmann's constant value and is much smaller than the radius-propagated uncertainty.} with a percent error of 28\% from the theoretical value. 
+
+The reduced chi-squared value for this Rayleigh distribution can be calculated using Equation \ref{chisq}; it comes out to be 3.814 $\bm{(\chi_{\nu}^2 = 3.814)}$. This reduced chi-squared value reveals that the data used to analyse does not fit perfectly with the curve. This can be explained by the first bin of the histogram in Figure \ref{fig:rayleigh} being highly concentrated.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.53]{pics/Rayleigh_distro.png}
+    \caption{The probability distribution of the 2D diffusion process fitted to a Rayleigh distribution (plotted in red), plotted alongside a relative frequency histogram (plotted in blue). From the fitted curve, the Boltzmann's constant value obtained is k = 1.00025 $\times 10^{-23} \pm 5.03 \times 10^{-24} \frac{\text{J}}{\text{K}}$.}
+    \label{fig:rayleigh}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 1.05]{pics/mle_residuals.png}
+    \caption{Residuals for the 35 bins of the relative frequency histogram, including their error bars.}
+    \label{fig:mle_residuals}
+\end{figure}
+
+ \vfill\pagebreak
+
+ \subsubsection*{Verifying Boltzmann's Constant with Avogadro's Number}
+
+To verify the accuracy of the experimentally obtained Boltzmann's constant (k), use Avogadro's number (N$_A$) and the gas constant (R) \textbf{---} N$_A$ = 6.022 $\times 10^{23}$, R = 8.3145 $\frac{\text{J}}{\text{mol}\cdot\text{K}}$ \textbf{---} with the relation:
+
+\begin{equation}
+    N_A = \frac{R}{k}
+\end{equation}
+
+Using the Boltzmann's Constant obtained during Method 1 of k = 1.5956 $\times 10^{-23} \pm 7.28 \times 10^{-24} \frac{\text{J}}{\text{K}}$, the calculated Avogadro’s number is $\bm{5.2108\times 10^{23} \pm 2.62 \times 10^{23}}$ \footnote[3]{This value is the uncertainty of Avogadro's number using the radius propagated uncertainty for Boltzmann's constant, $\sigma_k$, which is within the range of the theoretical value. The uncertainty that is propagated using the Python code is $7.28\times 10^{22}$, which does not fall within the range of the theoretical value.}, which is not experimentally equivalent to the theoretical  value. Using the Boltzmann's Constant obtained during Method 2 of k = 1.00025$\times 10^{-23} \frac{\text{J}}{\text{K}}$, the calculated Avogadro's number is equal to $\bm{8.3123\times 10^{23} \pm 4.18 \times 10^{23}}$ \footnote[4]{Similarly to the above footnote, the radius propagated uncertainty agrees with the theoretical value, whereas the Python calculated uncertainty of $8.31 \times 10^{22}$ does not.}, which is also not experimentally equivalent to 6.022 $\times10^{23}$.
+
+These experimental inaccuracies can be explained by a variety of sources of error including systematic error, digital error, and calculation error, which will be developed further in the following section.
+
+\section{Sources of Error}
+
+\subsection{Systematic Error}
+
+All major sources of systematic error are due to the physical setup of the sample slide (glass cover, tape, petroleum jelly) and the polystyrene bead solution.
+
+First, restriction of flow or excessive flow will drastically change the measurement of Brownian motion. If there is no flow within the sample of beads observed, there is no feasible way to measure motion. In addition, it is difficult to differentiate the random motion of beads from water solution having extra flow causing the beads to move. 
+
+If the glass cover is pressed down with excessive force, it will cause the beads to get stuck to the top cover or bottom slide to prohibit motion. If the tape and the jelly are not fully connected or not enough jelly is used or too much solution is added, there will be leakages, causing extra flow from the beads wanting to escape the jelly/tape enclosure. To best avoid excess or lack of motion, by visual inspection, faulty slides were eliminated and all beads were taken from the same slide to avoid discrepancies. As per the manual instructions, the sample was left still for a couple of minutes on the microscope stage to reach equilibrium of particles against flow, created by moving the slide around (ie. adjusting/focusing to find beads, moving the slide to the stage). Dirty slide covers (thumb-printed) were also avoided.
+
+\subsection{Digital Error}
+
+Digital error in this experiment is a result of manually choosing the center of the bead on the tracking software. Rather than the application determining the center of the bead in a consistent manner, the initial x-y coordinate to calculate the difference in motion between all time frames was visually chosen. An accurate central point of the bead contributes to error when calculating the slope of the mean squared distance in Method 1 and r$^2$ for the diffusion constant in Method 2 (Equation 12). Additionally, “Gain Value” and “Brightness Value” were visually adjusted differently for each bead to best display a bright and round shape to identify the middle in the Image Object Tracker application. While this was helpful for data collection, it may have caused discrepancies between each bead’s data.
+
+\subsection{Calculation Error}
+
+Another contribution to error is the temperature and viscosity used to calculate the diffusion coefficient (Equation \ref{eq:diffusion}). Viscosity is sensitive to temperature; it changes by 2\% for every degree increased. For Boltzmann’s constant calculations using the diffusion constant, the temperature was taken as the room temperature at the start of the data collection, a constant. For future improved data, temperature should be continuously monitored and the dependent variables should be adjusted accordingly. In addition, the data collected only accounts for 2D Brownian motion (x-y data) as the bead samples constitute extremely thin layers of liquid; random motion in the z-direction was neglected in our calculations. For a fuller understanding of the motion of the beads during the experiment, a third perspective of motion should be included in calculations and data collection since, in reality, the beads do fluctuate in the z-direction as well.
+
+\subsection{Error Propagation}
+
+The majority of the uncertainties are listed in the lab manual, such as the temperature uncertainty, viscosity, etc. However, the Boltzmann's constant, diffusion coefficient, and Avogadro's number uncertainty must be determined through error propagation calculations. The error propagation formula is as follows, for a function $z = f(x,y)$:
+
+\begin{equation*}
+    \sigma_z^2 = \frac{\partial f}{\partial x}(\sigma_x)^2 + \frac{\partial f}{\partial y}(\sigma_y)^2
+\end{equation*}
+
+Rearranging Equation \ref{eq:MLE} to isolate for D, the error propagation calculation is as follows and is calculated using Python code as it is a fairly large summation expression:
+
+\begin{align*}
+    \sigma_D^2 &= \frac{\partial D}{\partial r}(\sigma_r)^2 + \frac{\partial D}{\partial t}(\sigma_t)^2 \\
+    \sigma_D &= \sqrt{\frac{1}{4Nt}\sum_{k=1}^N2r_k(\sigma_r)^2 -\frac{1}{4Nt^2}\sum_{k=1}^Nr_k^2(\sigma_t)^2}    
+\end{align*}
+
+Given a multiplication expression $z = xy$, the uncertainty can be calculated by:
+\begin{equation*}
+    \sigma_z = z\sqrt{\big(\frac{\sigma_x}{x}\big)^2 + \big(\frac{\sigma_y}{y}\big)^2}
+\end{equation*}
+
+To calculate the uncertainty of Boltzmann's constant, the uncertainty of Stokes' drag must be calculated first. As such, the uncertainty for Stokes' drag is:
+
+\begin{equation}
+    \sigma_{\gamma} = \gamma\sqrt{\big(\frac{\sigma_{\eta}}{\eta}\big)^2 + \big(\frac{\sigma_{r_b}}{r_b}\big)^2}
+\end{equation}
+
+Next, the uncertainty of the Boltzmann's constant can be calculated as:
+
+\begin{equation}
+    \sigma_{k} = k\sqrt{\big(\frac{\sigma_{\gamma}}{\gamma}\big)^2 + \big(\frac{\sigma_{D}}{D}\big)^2 + \big(\frac{\sigma_{T}}{T}\big)^2}
+\end{equation}
+
+Finally, the uncertainty of Avogadro's number can be calculated as:
+
+\begin{equation}
+    \sigma_{N_A} = N_A\frac{\sigma_k}{k}
+\end{equation}
+
+\section{Conclusion}
+
+In conclusion, Einstein’s theory of Brownian Motion was used to calculate the Boltzmann’s constant of bead particles in liquid solution with 2 different methods. First, the 2D “random walk” of 10 beads was analyzed; the individual mean squared distance of the x-y coordinates of each individual dataset was fitted linearly. Ultimately, after leveraging Stoke’s Drag and the slope of the linear fit (diffusion coefficient), the final Boltzmann’s constant calculated with Method 1 is $\bm{1.5956 \times 10^{-23} \pm 8.026\times 10^{-24} \frac{J}{K}}$. Second, the Maximum Likelihood Estimate was used to fit a histogram containing bins organizing the datasets to a Rayleigh distribution. Python’s curvefit() function in the SciPy library was used to calculate a diffusion coefficient. Similarly using Stoke’s drag, the Boltzmann’s constant for Method 2 was numerically determined to be $\bm{1.00025\times 10^{-23} \pm 5.03\times 10^{-24} \frac{J}{K}}$. Though both values of k from Method 1 and 2 are relatively close to the actual value (15.5\% and 28\% percent error respectively), Avogadro’s number was used to verify the accuracy. Method 1 obtained a N$_A$ of $\bm{5.2108\times 10^{23} \pm 2.62\times 10^{24}}$ and Method 2’s N$_A$ is $\bm{8.3123\times 10^{23} \pm 4.18 \times 10^{23}}$, both of which were experimentally equivalent to Avogadro’s number given their uncertainty values. The inconsistent values of Avogadro’s number and Boltzmann’s can be credited to systemic, digital, and calculation error. 
+
+
+\vfill\pagebreak
+
+\appendix
+
+\begin{thebibliography}{14}
+
+\bibitem{labmanual} Serbanescu, R.M., Ryu, W., Ladan, J.; "Thermal Motion", 2017.
+\bibitem{SquareRootRule} “Adjusting the number of bins in a histogram,” Datacamp. [Online]. Available: \url{https://campus.datacamp.com/courses/statistical-thinking-in-python-part-1/graphical-exploratory-data-analysis?ex=7#:~:text=The\%20\%22square\%20root\%20rule\%22\%20is,for\%20the\%20number\%20of\%20bins.}
+\end{thebibliography}
+
+\section{Additional Figures and Pictures}\label{sec:extrapics}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/pixel conversion.png}
+    \caption{Pixel conversion with its uncertainty.}
+    \label{fig:pixelconv}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.5]{pics/microscope_bead.png}
+    \caption{Bead clump (in white) through the microscope.}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/computer_bead.png}
+    \caption{Bead clump through computer LabVIEW program.}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/datasampleset.png}
+    \caption{Sample of data collected during the lab session.}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Additional Calculations}
+
+For Method 2, the uncertainty of Boltzmann's constant was obtained using the Python code and by hand-calculation. The following shows how it was calculated by hand:
+
+We use Equations \ref{eq:diffusion} and \ref{eq:stokes} to obtain the values of k, D and $\gamma$. Then, we proceed as follows with our error propagation equations 17, 18, 19.
+
+\begin{equation}
+    \sigma_{\gamma} = \gamma\sqrt{\big(\frac{\sigma_{\eta}}{\eta}\big)^2 + \big(\frac{\sigma_{r_b}}{r_b}\big)^2} = (16.707)\sqrt{\big(\frac{0.05}{0.933}\big)^2 + \big(\frac{0.475}{0.95}\big)^2} = 8.40 
+\end{equation}
+
+\begin{equation}
+        \sigma_{k} = k\sqrt{\big(\frac{\sigma_{\gamma}}{\gamma}\big)^2 + \big(\frac{\sigma_{D}}{D}\big)^2 + \big(\frac{\sigma_{T}}{T}\big)^2} = (1E-23)\sqrt{\big(\frac{8.401}{16.707}\big)^2 + \big(\frac{0.0021}{0.1775}\big)^2 + \big(\frac{0.5}{296.5}\big)^2} = 5.03E-24
+\end{equation}
+
+\begin{equation}
+    \sigma_{N_A} = N_A\frac{\sigma_k}{k} = (8.3123\times10^{23})\cdot\frac{5.03E-24}{1.00025E-23} = 4.18 \times 10^{23}
+\end{equation}
+
+\section{Python Code}
+
+\subsection{Linear Fit Graph}
+
+\begin{minted}[fontsize = \small]{Python}
+import numpy as nump
+import pandas as panda
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+
+def error(mydata, r_sq): #using error propogration formulas 
+  #delta = (N * sum(x^2)) - sum(x)^2
+  #variance = 1/(N-2) * sum((y - (b +mx))^2)
+  #slope^2 = N * variance^2/delta : substitute delta, variance into equation.
+  
+  N = len(x_val)
+  delta = N * nump.sum(x_val**2) - (nump.sum(x_val))**2
+  var = (1 / (N - 1)) * sum((y_val - (r_sq[0] * x_val))**2)
+  error_slope = nump.sqrt(N * var / delta)
+  return [error_slope]
+
+def k_var(D): #Equation 3 and 4 in Lab Report: 6*pi*Viscosity*r*D/T
+  return (((D / 4) * 6 * nump.pi * 0.933 * 1.9 / 2) / 296.5) * 10**(-21)
+
+def make_into_matrix(list):
+  mylist = []
+  for i in range(0, len(list)):
+    mylist.append([list[i]])
+  return nump.array(mylist) 
+
+if __name__ == "__main__":
+  #importing file
+  mydata = panda.read_csv("r_squared.csv")
+  x_val = mydata.ind
+  y_val = mydata.dep
+  x_error = mydata.deltaInd
+  y_error = mydata.deltaDep
+
+  #r^2 = x^2 + y^2
+  mymatrix = make_into_matrix(x_val)
+  myvector = y_val.transpose()
+  a = nump.linalg.inv(nump.matmul(mymatrix.T, mymatrix))
+  b = nump.matmul(mymatrix.T, myvector)
+  r_sq = nump.matmul(a, b)
+
+  #residuals 
+  err = error(mydata, r_sq)
+  result = []
+  for i in range(0, len(x_val)):
+    result.append(y_val[i] - (x_val[i] * r_sq[0]))
+
+  
+  #graphing linear fit 
+  gs = gridspec.GridSpec(2, 1)
+    
+  y_error = y_error / nump.sqrt(10) 
+  x = nump.linspace(min(x_val), max(x_val))
+  y = nump.array((x * r_sq[0]))
+  
+  fig = plt.figure()
+  ax1 = fig.add_subplot(gs[0, 0])
+  fig.suptitle('r^2 vs Time')
+  ax1.set_ylabel('r^2 [$\mu$m$^2$]')
+  ax1.set_xlabel('Time [s]')
+  
+  ax1.plot(x, y, 'red')
+  ax1.scatter(x_val, y_val, marker='.', color='blue')
+  ax1.errorbar(x_val, y_val, xerr=x_error, yerr=y_error, color='blue', fmt='o',markersize=0.5)
+    
+  #graphing residuals
+  ax2 = fig.add_subplot(gs[1, 0])
+  ax2.set_ylabel('r^2 [$\mu$m$^2$]')
+  ax2.set_xlabel('Time [s]')
+  ax2.set_title('Residuals')
+  
+  ax2.plot(x, 0 * y, color='red')
+  ax2.scatter(x_val, result, marker='.', color='blue')
+  ax2.errorbar(x_val, result,xerr=x_error,yerr=y_error, color='blue', fmt='o', markersize=0.5)
+
+  print('4D: ', r_sq[0], '+/-', err[0])
+  print("k: ", k_var(r_sq[0]))
+
+  plt.savefig('linear', dpi=300)
+\end{minted}
+
+\subsection{Rayleigh Distribution Graph}
+
+\begin{minted}[fontsize = \small]{Python}
+from scipy.optimize 
+import curve_fit
+import os
+import numpy as nump
+import seaborn as sbrn
+import pandas as panda
+import matplotlib.gridspec as gridspec
+import matplotlib.pyplot as plt
+
+
+def dist(x_1, x_2, y_1, y_2):
+  return (nump.sqrt((y_2-y_1)**2 + (x_2-x_1)**2))
+
+def write_dist_df(fname):
+  mypath = ("thermalmotion/data/" + fname)
+
+  point = panda.read_csv(mypath, sep = "\t", header = 1)
+  point.columns.values[0] = 'x'
+  point.columns.values[1] = 'y'
+
+ #convert pixels to um with given conversion constant
+  point.x = point.x * 0.12048 
+  point.y = point.y * 0.12048 
+
+  dist_list = []
+  t = nump.linspace(1, 60, 119)
+  #120 frames per minute (60s) recorded, 119 stepsizes used to calculate
+
+  for p in range (0, 119):
+    cur = dist(point.x[p], point.x[p+1], point.y[p], point.y[p+1])
+    dist_list.append(cur)
+
+  d = {'time_passed' : t, 'dist_moved': dist_list}
+  return panda.DataFrame(data = d)
+
+#Equation 9 in Lab Report: x^2 = sum((your value - fit value)^2/uncertainty^2))
+def chi_sq(histogram_data, D):
+  chi_squared = ryl_distro(histogram_data.full_domain, D)
+  chi_squared = (histogram_data.data_in_bins - chi_squared)**2
+  chi_squared = sum (chi_squared/(histogram_data.full_errors)**2 )
+  chi_squared = chi_squared/35 #35 bins from histogram square root rule
+  return chi_squared
+
+def ryl_distro(r, D): #Equation  10 in Lab Report: p(r,t) = (r/2Dt) * e^(-r^2/4Dt)
+  return (r/(2*D*0.5))*(nump.exp(-(r**2)/(4*D*0.5))) 
+  #t = 0.5, because for 2 frames per second, one frame/timestep takes 0.5 seconds
+
+#Equation 15 in Lab Report: 2Dt = 1/2N * sum(r^2). Applying error propogration formulas
+#in 4.4 Lab Report: error_D = sqrt(1/4Nt* sum(2r* error_r^2))
+def MLE(r, err):
+  N = len(r)
+  two_Dt = (sum(r ** 2))/ (2 * N)
+  err_D = nump.sqrt(sum(2*r*(err**2)/(4 * N * 0.5)))
+  return two_Dt, err_D
+  
+def k_var(D): #Equation 3 and 4 in Lab Report: 6*pi*Viscosity*r*D/T
+  return(((D * 6 * nump.pi * 0.933 * 1.9/2)/296.5) * 10**(-21))
+
+if __name__ == "__main__":
+  file_list = os.listdir(r"thermalmotion/data")
+  i = 0
+
+  for file in file_list:
+    if i == 0:
+      full_distro = write_dist_df(file)
+      i = 1
+    else:
+      full_distro = panda.concat([full_distro, write_dist_df(file)], ignore_index=True)
+
+  N = len(full_distro.dist_moved) #N = 1190 sets of data, 120 x 10 -  (120 frames per dataset, 19
+  diff in distances)
+  B = 35 #using square root, Q = number of bins
+
+  del full_distro['time_passed']
+
+#### Making histogram ####
+  data_in_bins = nump.zeros(B)
+
+  #making histogram domain
+  full_domain = nump.linspace(0, 2, B)
+
+  #making histogram indices
+  full_indices= nump.digitize(full_distro.dist_moved, bins = nump.linspace(0, 2, B))
+  for index in full_indices:
+    data_in_bins[index - 1] += 1
+
+  #making histogram error
+  full_errors = []
+  for i in range(0, len(data_in_bins)):
+    full_errors.append(nump.sqrt(data_in_bins[i]))
+
+  #initializing histogram
+  histogram_data= {'full_errors': full_errors, 'full_domain': full_domain, 'data_in_bins':
+  data_in_bins}
+  histogram_data = panda.DataFrame(histogram_data)
+
+  #removing 0s from data 
+  zeros = histogram_data[histogram_data['data_in_bins'] == 0 ].index
+  histogram_data.drop(zeros, inplace = True)
+
+  #normalize data
+  histogram_data.full_errors = histogram_data.full_errors/(nump.sum(histogram_data.data_in_bins)
+  * 2/B)
+  histogram_data.data_in_bins = histogram_data.data_in_bins/(nump.sum(histogram_data.data_in_bins)
+  * 2/B) 
+  popt, pcov = curve_fit(ryl_distro, histogram_data.full_domain, histogram_data.data_in_bins,
+  sigma = histogram_data.full_errors)
+  
+  #MLE
+  norm_distro = full_distro.dist_moved
+  MLE_distro, err = MLE(norm_distro, 0.003)
+  
+
+  print("D: ", MLE_distro, "+/-", err) #um^2 s^-1
+  print ("k: ", k_var(MLE_distro), '+/-', 1e-24)
+  print ("Chi squared: ", chi_sq(histogram_data, MLE_distro))
+
+##### PLOTTING ####
+  
+ #Histogram/Rayleigh Distro
+  x = nump.linspace(0, 2, B)
+  y = nump.linspace(0, 2, B)
+  gs = gridspec.GridSpec(2, 1, hspace = 0.5)
+  finalfig = plt.figure()
+  
+  finalfig.suptitle('Distribution of distance per timeframe (0.5s)')
+  ax_1 = finalfig.add_subplot(gs[0, 0])
+  sbrn.histplot(data = full_distro, x ="dist_moved", binrange = (0, 2), color = 'blue',
+  stat = 'density')
+  ax_1.plot(x, ryl_distro(x, MLE_distro), '-', color = 'red', label = 'D using MLE')
+
+  ax_1.set_ylabel('Count in Bins')
+  ax_1.set_xlabel('Distance [$\mu$m]')
+  ax_1.legend()
+
+  #Residuals
+  residuals = []
+  for index in histogram_data.index:
+    residuals.append(histogram_data.data_in_bins[index] - 
+        ryl_distro(histogram_data.full_domain[index], popt[0]))
+
+  #plotting residuals
+  ax_2 = finalfig.add_subplot(gs[1, 0])
+  ax_2.plot(x, 0 * y , color = 'red')
+  ax_2.scatter(histogram_data.full_domain, residuals, color = 'blue', marker = '.')
+  ax_2.errorbar(histogram_data.full_domain, residuals, yerr = histogram_data.full_errors, color =
+  'blue', fmt = 'o', markersize = 0.5)
+  ax_2.set_ylabel('Count in Bins')
+  ax_2.set_xlabel('Distance [$\mu$m]')
+  ax_2.set_title('Residuals')
+
+plt.savefig('Rayleigh', dpi = 300)
+\end{minted}
+
+
+
+\end{document}
+
+
