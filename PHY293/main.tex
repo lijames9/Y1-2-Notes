@@ -1,0 +1,649 @@
+\documentclass[10pt, letterpaper, twoside]{article}
+\usepackage[legalpaper, portrait, margin=0.5in]{geometry}
+\usepackage{multicol,caption}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{titling}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{tabu}
+\usepackage[table]{xcolor}
+\usepackage{pdflscape}
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{subfiles}
+\usepackage{afterpage}
+\usepackage{filecontents}
+\usepackage{setspace}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.9em}
+
+\sectionfont{\fontsize{11}{15}\selectfont}
+\subsectionfont{\fontsize{11}{15}\selectfont}
+\setlength{\columnsep}{1cm}
+
+\title{\textbf{Quantum States and Spectra of Gases}\vspace{-1.5em}}
+\author{James Li (1007974248) & Nicholas Lupu-Muslea (1007896154)}\vspace{-2em}
+\date{October 18, 2022}
+
+\renewenvironment{abstract}
+ {\small
+  \begin{center}
+  \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
+  \end{center}
+  \list{}{
+    \setlength{\leftmargin}{1.32cm}%
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \item\relax}
+ {\endlist}
+
+\begin{document}
+
+\maketitle
+\vspace{-3em}
+
+\begin{abstract}
+   This experiment introduces and works with the emission spectrum of various gases, comparing known data with experimentally obtained data. When an electron transitions from different quantum states, it releases a photon, containing a packet of light and energy. Different gases found in discharge tubes were charged with a high voltage to emit photons to analyse their behaviors. The emission of the photon directly correlates to the spectral lines on the emission spectrum. Results show that the emission lines of hydrogen and the helium cation behave differently. The emission spectrum was also used to portray how humans perceive colors and how it differentiates the colors from white light. Colored solutions had white light shone at them, and the results show that the highest point of transmission corresponded to the color of the solution on the color spectrum.
+\end{abstract}
+
+\section{Introduction}
+
+When an electron transitions from a lower energy state to a higher energy state, it releases a photon, which is comprised by a spectrum of multiple waves of electromagnetic radiation. The energy of this photon is the energy difference between the higher and lower quantum states of the chemical compound. Since each element's emission spectrum is unique, it can be used to study the behavior of different elements and identify unknown elements.
+
+In this experiment, a gas discharge tube is placed in a high voltage source that causes electrons to be heavily charged and travel rapidly toward the anode of the tube. When these electrons collide with the gas particles in the tube, the gas particles can become positively charged (ionized); consequently, the gas particle loses an electron, which will also travel towards the anode of the tube. Contrarily, the now positively charged gas particle (cation) will travel toward the cathode of the tube. The process of ionization causes the total energy of the neutral atom to increase; in effect, the electron will transition to a different energy level, leaving a vacancy in its previous electron shell. In the aforementioned process, energy is released in the form of light (photon), and the ion energy is decreased. This light can be represented as a spectrum of electromagnetic radiation across different wavelengths.
+
+When the element found in the gas discharge tube is heated, it will begin to glow (glow discharge), releasing energy in the form of light. With the help of a spectrometer, the different wavelengths in the components of the light, emitted from the photon, can be separated and placed on the spectrum using external software, PASCO Spectrometry. 
+
+Quantum physicists Max Planck and Niels Bohr uncovered a relationship between the energy of the photon released and the transition of the particle between the quantum states. For a hydrogen atom or any particle similar to a hydrogen atom, such as He$^+$, the energy of the photon emitted during the particle transition from quantum state m to n can be calculated as follows:\vspace{-1em}
+
+\begin{equation}
+\textit{hf} = R_{EH}Z^2(\frac{1}{m^2}-\frac{1}{n^2}) 
+\end{equation}
+
+The empirical formula for a visible spectrum of hydrogen was discovered by Johann Balmer, named the Balmer series:
+
+\begin{equation}
+    \textit{hf} = R_{EH}(\frac{1}{2^2}-\frac{1}{n^2}) 
+\end{equation}
+
+Finally, to calculate the energy of any stationary state of the hydrogen (or hydrogen-like) atom, Bohr's postulates are used to obtain the formula for E$_n$:
+
+\begin{equation}
+    E_n = \frac{Z^2k_ee^2}{2n^2a_0} \approx -\frac{13.6Z^2}{n^2}
+\end{equation}
+
+where Z is the number of protons and n is the quantum state of the atom.
+
+To explain why the energy of a hydrogen atom at the n-th energy level is a negative value, it should be understood that the nucleus of the atom exerts an electrostatic force on the electron to hold the atom together. The energy of the electron consists of both potential and kinetic energy, so that when the electron is infinitely far away from the nucleus, the potential energy is zero. However, as the electron becomes infinitely close to the nucleus, the potential energy approaches negative infinity.
+
+The above observations can be expressed as limits, where r is the distance between the nucleus and the electron: \vspace{-2.5em}
+
+\begin{align*}
+    \lim_{r\rightarrow\infty} PE &= 0\\
+    \lim_{r\rightarrow 0}PE &= -\infty
+\end{align*}
+
+The reason for the value of the energy being negative is because the electron requires energy to be supplied to it to overcome the strong, attractive force of the nucleus if it wishes to escape the atom.
+
+\vspace{-1em}
+
+\section{Materials and Methods}
+
+\subsection{Materials:}
+\vspace{-1em}
+
+For the experiments, the equipment used were as follows:
+
+\vspace{-1em}
+
+\begin{itemize}
+    \item Mercury (Hg), Hydrogen (H), Helium (He), and "unknown" gas discharge tubes
+    \item Computer with USB port
+    \item PASCO wireless spectrometer PS-2600
+    \item Fiber optics cable PS-2601 (probe)
+    \item High voltage power supply
+    \item Software \textbf{---} \textit{Spectrometry} (resolution $\pm$ 2-3 nm)
+    \item Cuvettes of different water-diluted substances
+    \item Clamp
+\end{itemize}
+\vspace{-2em}
+
+\subsection{Methods}
+\vspace{-1em}
+
+\subsubsection{Gas Discharge Tube (Part 1):}
+
+\begin{enumerate}
+    \item Turn the spectrometer on using the ON/OFF Button and make sure all three LED bulbs are glowing.
+    \item Make sure the power supply for a discharge tube is unplugged, and carefully insert a Hg gas tube into the power supply to plug it in on both ends.
+    \item Place the rectangular end of the fibre optics cable in the cuvette opening of the spectrometer, making sure the arrow on top of the rectangular end showed the direction toward the built-in detector.
+    \item Fix the probe end of the cable in the clamp vertically above the tube and point the probe to the tube center at about 0.5 cm from the tube.
+    \item Plug the wire of the power supply into the net. Turn on the power supply with the red switch on its side.
+    \item Used the Spectrography software and begin to analyse the light of the gas tube. Start a recording of the test spectrum, and adjust parameters to get the optimal recording. 
+    \item Record data for about 2 minutes, and then turn off power supply.
+\end{enumerate}
+
+\begin{Figure}
+    \begin{center}
+        \includegraphics[scale = 0.05, angle = -90]{pics/method/mercury.jpg}
+        \captionof{figure}{Mercury gas discharge tube with the high voltage source powered on; the clamp is holding the fiber optic probe that detects the emission from the tube.}
+    \end{center}
+\end{Figure}
+
+\subsubsection{Gas Discharge Tube (Part 2):}
+
+\begin{enumerate}
+    \item Repeat steps 1-5 of part 1 with the hydrogen tube instead of the mercury tube.
+    \item Calculate quantum state energies of hydrogen at n = 3, 4 and 5, and expect energies of the Balmer series spectral lines using Equation 2.
+    \item Convert energies of spectral lines to wavelengths, and compare to experimental values.
+\end{enumerate}
+
+\subsubsection{Gas Discharge Tube (Part 3):}
+
+\begin{enumerate}
+    \item Repeat steps 1-5 of part 1 with the helium tube instead of the mercury tube.
+    \item Determine wavelength of measured values, compared them to the reference wavelengths at each electron configuration, and calculate change in quantum number.
+\end{enumerate}
+
+\subsubsection{Gas Discharge Tube (Part 4):}
+
+\begin{enumerate}
+    \item Repeat steps 1-5 of part 1 with the unknown gas tube instead of the mercury tube.
+    \item Determine the unknown gas through calibration values, and the standard spectra stored on the software.
+\end{enumerate}
+
+\subsubsection{Dyed Substance Solutions (Part 5):}
+
+\begin{enumerate}
+    \item Remove probe, and calibrate the spectrograph to dark.
+    \item Insert the clear cuvette into the cuvette holder, with the glossy side facing the white light and calibrate the spectrograph to the clear cuvette.
+    \item Switch to the blue cuvette and measure levels of transmittance and absorbance with the blue cuvette under the white light.
+    \item Repeat step 3 with the red and green cuvette.
+\end{enumerate}
+
+\subsubsection{Dyed Substance Solutions (Part 6):}
+\begin{enumerate}
+    \item Insert yellow cuvette with the glossy side facing the violet and blue light. Find the absorption edge, which is the wavelength at which absorption jumps significantly.
+    \item Use the wavelength of the absorption edge to calculate the band gap energy of the dye.
+    \item Determine whether the yellow dye demonstrates semiconductor properties.
+\end{enumerate}
+
+\section{Data and Analysis}
+
+\subsection{Part I:}
+\vspace{-1em}
+
+When acquiring the data, there were several variables to take into account, such as the distance between the fiber optic probe and the gas discharge tube, the number of scans to average and the number of points to smooth the spectral curve. 
+
+Increasing the distance between the fiber optic probe and gas discharge tube decreased the intensity of spectral line measured, which is explained by the fact that the probe detects the light waves emitted by the gas discharge tube. As light travels through space, its waves will propagate in every direction, filling up the space it travels through; however, as the light travels away from the source, more area is filled, which means the light intensity must be distributed evenly throughout the area. Thus, the intensity of the light waves decrease proportionally with the increase of distance from the source.
+
+If D is the distance from the source of light and I is the intensity of the light wave, the relationship can be modelled as: \vspace{-2em}
+
+\begin{equation*}
+   D \propto \frac{1}{I^2}  
+\end{equation*}
+
+Adjusting the number of scans to average did not appear to have a great effect on the spectral curve, but adjusting the number of points to smooth decreased the intensity of spectral curve. This is because there are not adequate data points being collected by the software, which forces to smooth by flattening. 
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        Color & Violet & Violet & Blue & Green & Yellow & Yellow \\
+        \hline
+        Expected $\lambda$ (nm) & 404.6565 & 407.7837 & 435.8328 & 546.0735 & 576.9598 & 579.0663 \\
+        \hline
+        Expected Energies (eV) & 3.0663 & 3.0428 & 2.8469 & 2.2722 & 2.1506 & 2.1427 \\
+        \hline
+        Experiment $\lambda$ (nm) & 403.467 & 407.178 & 437.708 & 543.389 & 574.123 & 576.350 \\
+        \hline
+        Experiment Energy (eV) & 3.0753 & 3.0473 & 2.8347 & 2.2834 & 2.1612 & 2.1528\\
+        \hline
+    \end{tabular}
+    \caption{Experimental and calculated data from Experiment 1.}
+    \label{tab:my_label}
+\end{table}
+
+
+The slope and y-intercept of the line of best fit is (from Figure 2 in Appendix B):
+
+\begin{itemize}
+    \item \textbf{Slope:} m = 1.02 $\pm$ 0.02;  \textbf{Y-Intercept:} b = -6.59 $\pm$ 7.20
+\end{itemize}
+
+The goodness of fit criteria applied to this line of best fit are reduced chi-squared and residuals:
+
+\begin{itemize}
+    \item \textbf{Reduced chi-squared:} $\chi^2$ = 3.222; \textbf{Residuals:} $\sum_{i=1}^N r_i$ = -11.147
+\end{itemize}
+
+The slope and y-intercept of the line of best fit is (from Figure 3 in Appendix B):
+
+\begin{itemize}
+    \item \textbf{Slope:} m = 0.99 $\pm$ 0.01; \textbf{Y-Intercept:} b = 0.030 $\pm$ 0.022
+\end{itemize}
+
+The goodness of fit criteria applied to this line of best fit are reduced chi-squared and residuals:
+
+\begin{itemize}
+    \item \textbf{Reduced chi-squared:} $\chi^2$ = 0.016; \textbf{Residuals:} $\sum_{i=1}^N r_i$ = -0.002
+\end{itemize}
+
+\subsection{Part II:}
+\vspace{-1em}
+\begin{table}[!ht]
+    \centering
+\begin{tabular}{|c|c|c|c|}
+        \hline
+        Quantum State (n) & 3 & 4 & 5 \\
+        \hline
+        Energy at Quantum State n (eV) & -1.511 & -0.850 & -0.544 \\
+        \hline
+        Balmer Series at Quantum State n (eV) & 1.89 & 2.55 & 2.86\\
+        \hline
+        Theoretical $\lambda$ (nm) & 660.83 & 487.20 & 435 \\
+        \hline
+        Experiment $\lambda$ (nm) & 653.05 & 485.303 & --- \\
+        \hline
+    \end{tabular}
+    \caption{Calculated energies and wavelengths of different quantum states of hydrogen gas.}
+    \label{tab:my_label}
+\end{table}
+    
+
+Relative intensity of the lines may vary for the same atoms from experiment to experiment because the spectrum reflects the movement from one energy level to another. Since there are several energy levels, the intensity between each combination may be different. For instance, Balmer predicted one set of intensities for hydrogen, based specifically off of an initial energy level of n = 2. The Balmer equation can predict other combinations as well, but may give different results. 
+\vspace{-2.5em}
+
+\subsection{Part III:}
+\vspace{-1em}
+For a helium ion transitioning from ground quantum state m = 2 to n = 3, the energies are calculated as follows:
+\vspace{-1em}
+\begin{itemize}
+    \item E$_2$ = $-\frac{13.6(2)^2}{2^2}$ = -13.6 eV
+\end{itemize}\vspace{-2em}
+
+\begin{itemize}
+    \item E$_3$ = $-\frac{13.6(2)^2}{3^2}$ = -6.044 eV
+\end{itemize}\vspace{-2em}
+which translates to the energy released by the photon to be $\sim$7.55 eV. The wavelength corresponding to this energy released can be calculated as follows:
+\vspace{-1em}
+\begin{equation*}
+E = \frac{hc}{\lambda} \rightarrow \lambda = \frac{hc}{E} = \frac{(6.626\times10^{-34})(3\times10^8)}{7.55\times1.6\times10^{-19}} = 164 \text{ nm}
+\end{equation*}
+The calculated and measured wavelengths are not equal because $\lambda$ = 164 nm is not on the visible light spectrum and cannot be detected as a point of photon release. The most defined point at which the photon is released is $\lambda$ = 588 nm, which also corresponds to the helium ion transitioning from quantum states n = 3 to m = 2.
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.8cm}|p{1.5cm}|p{1.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|}
+        \hline
+        Electron configuration of the initial state & Electron configuration of the final state & Reference Intensity in arbitrary units & Reference wavelength of the emission line, $\lambda_r$ (nm) & Measured wavelength of the emission line, $\lambda_{\text{exp}} \pm \Delta\lambda_{\text{exp}}$ (nm) & Energy of the quantum state, E$_n$ (eV) & Energy of the quantum state, E$_m$, (eV) & $\Delta$n & $\Delta$l & $\Delta$J\\
+        \hline
+        1s2p (1) & 1s$^2$ (0) & 1000 & 58.43339 & ------------ & -3.34 & -24.57 & 1 & 1 & 1\\
+        \hline
+        1s3s (1) & 1s2p (2) & 200 & 706.5190 & 702.098 $\pm$ 3 & -1.84 & -3.60 & 1 & -1 & -1 \\
+        \hline
+        1s3p (1) & 1s2s (1) & 500 & 388.8648 & 391.919 $\pm$ 3& -1.56 & -4.75 & 1 & 1 & 0\\
+        \hline
+        1s3d (3) & 1s2p (2) & 500 & 587.5621 & 584.151 $\pm$ 3& -1.49 & -3.60 & 1 & 1 & 1\\
+        \hline
+        1s3d (2) & 1s2p (1) & 100 & 667.8151 & 664.594 $\pm$ 3& -1.492 & -3.35 & 1 & 1 & 1\\
+        \hline
+        1s3p (1) & 1s2s (0) & 100 & 507.5678 & 500.148 $\pm$ 3 & -1.51 & -3.95 & 1 & 1 & 1\\
+        \hline
+        1s4d (1) & 1s2p (2) & 200 & 447.1480 & 448.362 $\pm$ 3 & -0.83 & -3.60 & 2 & 1 & -1\\
+        \hline
+    \end{tabular}
+    \caption{Experimental and calculated data of the emission lines of He$^+$ and its transition from quantum state n = 3 to m = 2.}
+    \label{tab:my_label}
+\end{table}
+    
+Through experimentation, it can be concluded that 6 spectral lines contribute to the transition of the helium ion from n = 3 to m = 2. The hydrogen emission spectrum only has 2 spectral lines since its singular electron cannot travel between different quantum states as easily, the electron configuration of hydrogen being 1s$^1$.
+
+Equation 1 cannot be used to calculate the energy of a neutral helium atom since it can only be applied to hydrogen-like atoms. In other words, a neutral helium particle has two electrons orbiting the nucleus while a helium cation only has one electron orbiting the nucleus, qualifying it as a hydrogen-like atom.
+\vspace{-1em}
+
+\subsection{Part IV:}
+\vspace{-1em}
+Based on the spectrography of the unknown gas, we have come to the conclusion that the gas is likely krypton. As per Table 4, the actual, calculated, and measured values of krypton wavelengths were very similar. The notable difference between the actual and calculated is the fact that in our experiment, there was no peak at the wavelength of 769 mm. However, the other measured peaks were within a few nanometres of the actual measures. In addition, the ratio of intensity between the three peaks that were measured in this experiment was roughly 18:15:9, which is not perfectly accurate to the actual ratio, of roughly 1:$\frac{1}{2}$:$\frac{1}{4}$, but is similar (ratio is 1:$\frac{5}{6}$:$\frac{1}{2}$). 
+
+The values of the expected wavelength below are chosen from Appendix 2 for \textbf{Krypton (Kr)}. The first 5 entries were ignored because the spectrometer did not detect any release in energy until $\lambda$ = 757.604 nm.
+
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Expected Wavelength, $\lambda$ (nm) & Observed $\lambda$ (nm) & Calibrated $\lambda$ (nm) & Relative Intensity (to strongest) \\
+        \hline
+          759 & 757.604 & 766.166 & 0 (17.829)\\
+        \hline
+          769 & ----------- & ----------- & ----------- \\
+        \hline
+          810 & 810.2 & 819.814 & -2.9 (14.929)\\
+         \hline
+          826 & 826.803 & 836.749 & -8.775 (9.054)\\
+        \hline
+    \end{tabular}
+    \caption{Compiled and measured data used to determine the unknown gas.}
+    \label{tab:my_label}
+\end{table}
+
+
+\subsection{Part V:}
+\vspace{-1em}
+When white light passes through a coloured solution, bands of the spectrum are absorbed by the solution, and the remaining wavelengths are transmitted through the solution. The transmitted wavelengths are what gives the coloured solution its particular colour. In the results of this part of the experiment, the spectrography of each coloured solution shows a dip in absorbance and a peak in transmittance over the range of that colour in the spectrum of white light. For instance, for the blue solution, the range over which absorbance dips and transmission peaks is from 432 to 481 nm, as per Table 5. Additionally, the range for the red solution is from 635 nm onward, and the green solution has a range of  from 500 to 523 nm. These ranges can all be seen on the spectrography for the respective solutions, in Figures 11 and 12 of the appendix. 
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Solution Color & Measured Transmittance (\%) & Measured Absorption & Calculated Absorption & $\lambda$ (Peak) \\
+        \hline
+        Blue & 15.284 & 0.837 & 0.816 & 456.128 \\
+        \hline 
+        Red & 99.5 & $\approx$ 0 & 0.0022 & 635 \\
+        \hline
+        Green & 9.662 & 1.063 & 1.015 & 508.726 \\
+        \hline
+    \end{tabular}
+    \caption{Absorption and transmittance properties of the colored solutions.}
+    \label{tab:my_label}
+\end{table}
+
+The wavelength values at which the peak transmission occurs also corresponds to its color on the spectrum. For instance, at $\lambda$ = 456.128 nm, it occurs at the blue strip on the color spectrum, which is why the blue color of the solution can be seen. The same reasoning can be applied to the other two colored solutions as well.
+\vspace{-1em}
+\subsection{Part VI:}
+\vspace{-1em}
+With 405 nm excitation: absorption edge $\rightarrow \lambda \in$ [500, 540]. With 500 nm excitation: absorption edge $\rightarrow \lambda \in$ [495, 520].
+
+Band gap energy @ 405 nm and @ 500 nm, respectively:
+\vspace{-1em}
+
+\begin{equation*}
+    E_g = \frac{1240}{\lambda} = [2.296, 2.48]\text{ , }[2.385, 2.505]
+\end{equation*}
+Band gap for 3 types of materials \textbf{---} metals: theoretically 0 eV, insulators: > 3 eV, semi-conductors: < 3 eV. The band gap for the yellow dye falls in the range of < 3 eV, thus, this substance is a semi-conductor.
+
+Semiconductors are characterized by having a certain level of electrical conductivity, making them distinct from insulators, but not to the extent that traditional conductors such as certain metals do. Insulators have a large band gap, generally greater than 3 eV. True conductors have no band gap. Semiconductors generally have a much smaller band gap than insulators, generally around 1 eV. In the case of the yellow solution, the band gap ranges from 2.3 to 2.5 eV. 
+
+\section{Conclusion and Errors:}
+
+Through analysis of various spectrographs, several conclusions were reached. Intensity of spectral emissions varied as movement between energy levels occurred, as observed through analysis of hydrogen. Through observation of the intensity at expected wavelengths, an unknown gas could be correctly identified. With a high level of certainty, the spectrum of transmittance of different solutions could be observed. Lastly, a solution could be correctly identified as a conductor, insulator, or semiconductor based on band gap
+
+
+
+The main source of error in this lab was the missing peak of the krypton spectrograph for determining the unknown gas. This most likely occurred because the wavelength that the peak should have been at was very close to another wavelength - 769 nm for the missing and 759 nm for the nearby peak. On the spectrograph, the peak was quite wide, and therefore the peak that should have been at 769 may have been absorbed into the nearby more intense peak. However, the other three peaks of the krypton spectrograph were very close to the expected wavelength values, and were of the expected intensity ratio so that it could be confidently predicted that the unknown gas was krypton.
+
+\vfill\pagebreak
+
+\appendix
+\section{Appendices}
+
+\subsection{Additional Calculations:}
+
+\subsubsection{Step 1:}
+
+The expected and experimental energies from Table 1 were calculated using the energy of a photon equation, where h = 6.626$\times$ 10$^{-34}$ J$\cdot$s and c = 3.0 $\times 10^{8}$ m/s:
+
+\begin{equation*}
+    E = \frac{hc}{\lambda} \times 6.242 \times 10^{18} \text{ eV}
+\end{equation*}
+
+\begin{center}
+    \begin{tabular}{c|c}
+    Expected Energy & Experimental Energy \\
+    \hline
+    \thead{E$_1$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{404.6565} \times 6.242 \times 10^{18}$ = 3.0663 eV \\
+    E$_2$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{407.7837} \times 6.242 \times 10^{18}$ = 3.0428 eV
+     \\
+    E$_3$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{435.8328} \times 6.242 \times 10^{18}$ = 2.8469 eV\\
+    E$_4$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{546.0735} \times 6.242 \times 10^{18}$ = 2.2722 eV \\
+    E$_5$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{576.9598} \times 6.242 \times 10^{18}$ = 2.1506 eV \\
+    E$_6$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{579.0663} \times 6.242 \times 10^{18}$ = 2.1427 eV}
+&  \thead{E$_1$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{403.467} \times 6.242 \times 10^{18}$ = 3.0753 eV \\
+    E$_2$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{407.178} \times 6.242 \times 10^{18}$ = 3.0473 eV\\
+    E$_3$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{437.708} \times 6.242 \times 10^{18}$ = 2.8347 eV\\
+    E$_4$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{543.389} \times 6.242 \times 10^{18}$ = 2.2834 eV\\
+    E$_5$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{574.123} \times 6.242 \times 10^{18}$ = 2.1612 eV\\
+    E$_6$ = $\frac{6.626 \times 10^{-34} \cdot 3 \times 10^{8}}{576.350} \times 6.242 \times 10^{18}$ = 2.1528 eV}\\
+    \end{tabular}
+\end{center}
+
+The uncertainties of the slopes and y-intercepts of the linear fits were calculated using the set of standard deviation formulas for the slope of a line:
+
+\begin{align*}
+    \Delta &= N\sum x_i^2 - (\sum x_i)^2\\
+    s_{y,x}^2 &= \frac{1}{N - 2}\sum[y_i - (b + mx)]^2\\
+    s_m^2 &= N\frac{s_{y,x}^2}{\Delta}\\
+    s_b^2 &= \frac{s_{y,x}^2\sum x_i^2}{\Delta}
+\end{align*}
+
+where the slopes of the line can be expressed as m $\pm$ s$_m$ and the y-intercept of the line can expressed as b $\pm$ s$_b$.
+
+\begin{center}
+    \begin{tabular}{c|c}
+        Uncertainties for Measured vs. Experimental Wavelength & Uncertainties for Measured vs. Experimental Energy \\
+        \hline
+        \thead{$\Delta$ = $6\times(1477235) - (2942.215)^2$ = 206787\\
+        s$_{y,x}^2$ = $\frac{1}{6-2}\times 28.99$ = 7.249 \\ 
+        s$_m^2$ = $6\times\frac{7.249}{206787}$ = 0.0002, s$_m$ = 0.015\\
+        s$_b^2$ = $\frac{7.249\times 2942.215}{206787}$ = 51.78, s$_b$ = 7.20 } & 
+        \thead{$\Delta$ = $6\times(41.14) - (15.52)^2$ = 5.952 \\
+        s$_{y,x}^2$ = $\frac{1}{6-2}\times 3.25 \times 10^{-4}$ = 8.13 $\times$ 10$^{-5}$ \\ 
+        s$_m^2$ = $6\times\frac{8.13 \times 10^{-5}}{5.952}$ = 8.2 $\times$ 10$^{-5}$, s$_m$ = 0.009\\
+        s$_b^2$ = $\frac{8.13\times10^{-5}\times 41.14}{5.952}$ = 5.6 $\times$ 10$^{-4}$, s$_b$ = 0.024}
+    \end{tabular}
+\end{center}
+
+The goodness of fits criteria used were reduced chi-squared and residuals. To calculate the aforementioned methods, the formulas are:\vspace{-1em}
+
+\begin{align*}
+    \chi^2 &= \sum_{i=1}^N\frac{[y_i-f(x_i)]^2}{\sigma_{y_i}^2} \\
+    r_i &= y - y_i
+\end{align*}
+
+\begin{center}
+    \begin{tabular}{c|c}
+        Goodness of Fit (Graph 1) & Goodness of Fit (Graph 2) \\
+        \hline 
+        \thead{$\chi^2 = \sum_{i=1}^N\frac{[y_i-f(x_i)]^2}{\sigma_{y_i}^2}$ = 3.22 \\ $r_i = y - y_i$ = -11.15} & \thead{$\chi^2 = \sum_{i=1}^N\frac{[y_i-f(x_i)]^2}{\sigma_{y_i}^2}$ = 0.0165 \\ $r_i = y - y_i$ = -0.0022}
+    \end{tabular}
+\end{center}
+
+\subsubsection{Step 2:}
+
+Calculating the energies for the different quantum states uses equation 3:
+\begin{equation*}
+    E_n = \frac{Z^2k_ee^2}{2n^2a_0} \approx -\frac{13.6Z^2}{n^2}
+\end{equation*}
+\begin{itemize}
+    \item E$_3$ = $-\frac{13.6(1)^2}{3^2}$ = -1.511 eV
+    \item E$_4$ = $-\frac{13.6(1)^2}{4^2}$ = -0.85 eV
+    \item E$_5$ = $-\frac{13.6(1)^2}{5^2}$ = -0.544 eV
+\end{itemize}
+
+Calculating the Balmer series for the different quantum states uses equation 2:
+
+\begin{equation*}
+    \textit{hf} = R_{EH}(\frac{1}{2^2}-\frac{1}{n^2}) 
+\end{equation*}
+
+\begin{itemize}
+    \item hf (n=3) = 13.6($\frac{1}{4} - \frac{1}{3^2}$) = 1.89 eV
+    \item hf (n=4) = 13.6($\frac{1}{4} - \frac{1}{4^2}$) = 2.55 eV
+    \item hf (n=5) = 13.6($\frac{1}{4} - \frac{1}{5^2}$) = 2.86 eV
+\end{itemize}
+
+Calculating the wavelengths uses the energy of a photon equation:
+
+\begin{itemize}
+    \item $\lambda_3$ = $\frac{(6.626\times10^{-34})(3\times10^{8})}{1.88 \times 1.6 \times 10^{-19}}$ = 660.83 nm
+    \item $\lambda_4$ = $\frac{(6.626\times10^{-34})(3\times10^{8})}{2.55 \times 1.6 \times 10^{-19}}$ = 487.20 nm
+    \item $\lambda_5$ = $\frac{(6.626\times10^{-34})(3\times10^{8})}{2.856 \times 1.6 \times 10^{-19}}$ = 435 nm
+\end{itemize}
+
+\subsubsection{Step 3:}
+
+To calculate the energy of the quantum state, E$_n$, there is an intermediate step that involves determining the energy of the reference wavelength of the emission line, $\lambda_r$.
+
+E$_n$ is calculated by:
+
+\begin{equation*}
+E_n = E_m + \frac{hc}{\lambda_r}
+\end{equation*}
+
+Let E$_i$ represent the intermediary energy defined by $\frac{hc}{\lambda_r}$
+
+\begin{center}
+    \begin{tabular}{c|c}
+        E$_i$ = $\frac{hc}{\lambda_r}$ & E$_n$ \\
+        \hline
+        \thead{$E_{i1}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_1}}$ = 21.23\\
+        $E_{i2}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_2}}$ = 1.76\\ 
+        $E_{i3}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_3}}$ = 3.19\\
+        $E_{i4}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_4}}$ = 2.11\\
+        $E_{i5}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_5}}$ = 1.858 \\
+        $E_{i6}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_6}}$ = 2.44\\
+        $E_{i7}$ = $\frac{(6.626\times10^{-34})(3\times10^8)}{\lambda_{r_7}}$ = 2.77} & 
+        \thead{$E_{r1} = E_{m1} + E_{i1} = 21.23 - 24.57$ = -3.34 \\
+        $E_{r2} = E_{m2} + E_{i2} = 1.76 - 3.60$ = -1.84 \\
+        $E_{r3} = E_{m3} + E_{i3} = 3.19 - 4.75$ = -1.56 \\
+        $E_{r4} = E_{m4} + E_{i4} = 2.11 - 3.60$ = -1.49 \\
+        $E_{r5} = E_{m5} + E_{i5} = 1.858 - 3.35$ = -1.492 \\
+        $E_{r6} = E_{m6} + E_{i6} = 2.44 - 3.95$ = -1.51 \\
+        $E_{r7} = E_{m7} + E_{i7} = 2.77 - -3.60$ = -0.83 \\}
+    \end{tabular}
+\end{center}
+
+\subsubsection{Step 4:}
+
+To obtain the calibrated wavelengths, the line of best fit for wavelength was used, where $\lambda_{\text{true}}$ = 1.02$\lambda_{\text{measured}}$ - 6.59.
+
+\begin{itemize}
+    \item $\lambda_1$ = 1.02 $\times$ (757.604) - 6.59 = 766.166 nm
+    \item $\lambda_2$ = 1.02 $\times$ (810.2) - 6.59 = 819.814 nm
+    \item $\lambda_1$ = 1.02 $\times$ (826.803) - 6.59 = 836.749 nm
+\end{itemize}
+
+\subsubsection{Step 5:}
+
+To calculate the absorbance given a transmittance (in percent), the following formula can be used:
+
+\begin{equation*}
+    A = -\log_{10}(\frac{T}{100})
+\end{equation*}
+
+where A is the absorption and T is the transmittance percentage.
+
+\begin{itemize}
+    \item A$_1$ = -$\log_{10}(\frac{15.284}{100})$ = 0.816
+    \item A$_2$ = -$\log_{10}(\frac{99.5}{100})$ = 0.0022
+    \item A$_3$ = -$\log_{10}(\frac{9.662}{100})$ = 1.015
+\end{itemize}
+
+\vfill\pagebreak
+
+\subsection{Pictures:}
+\begin{figure}[!ht]
+    \centering
+\includegraphics[scale = 0.5]{pics/part 1/Best Fit of True vs. Measured Wavelength (1).png}
+    \caption{True vs. Measured Wavelength Line of Best Fit}
+    \label{fig:my_label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+\includegraphics[scale = 0.55]{pics/part 1/Best Fit of True vs. Measured Energy (1).png}
+    \caption{True vs. Measured Energy Line of Best Fit}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.168]{pics/mercury.jpg}
+    \caption{Emission spectrum of Mercury (Hg) gas measured from its gas discharge tube.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.168]{pics/hydrogen.jpg}
+    \caption{Emission spectrum of Hydrogen (H) gas measured from its gas discharge tube.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.12]{pics/helium.jpg}
+    \caption{Emission spectrum of Helium (He) gas measured from its gas discharge tube.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.168]{pics/krypton.jpg}
+    \caption{Emission spectrum of unknown gas measured from its gas discharge tube, which was concluded to be Krypton (Kr).}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.168]{pics/blue transmit.jpg}
+    \caption{Absorbance and Transmittance of the Blue Solution when shone with white light.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.168]{pics/green transmit.jpg}
+    \caption{Absorbance and Transmittance of the Green Solution when shone with white light.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.168]{pics/red transmit.jpg}
+    \caption{Absorbance and Transmittance of the Red Solution when shone with white light.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.1, angle = -90]{pics/405 fluor.jpg}
+    \caption{Graph of fluorescence @ 405 nm of the Yellow Solution shone with violet and blue light.}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.1, angle = -90]{pics/500 fluor.jpg}
+    \caption{Graph of fluorescence @ 500 nm of the Yellow Solution shone with violet and blue light.}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+\end{document}
