@@ -1,0 +1,538 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[legalpaper, portrait, margin=1in]{geometry}
+\usepackage{multicol,caption}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{titling}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{tabu}
+\usepackage[table]{xcolor}
+\usepackage{pdflscape}
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{subfiles}
+\usepackage{afterpage}
+\usepackage{filecontents}
+\usepackage{setspace}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.9em}
+
+\sectionfont{\fontsize{11}{15}\selectfont}
+\subsectionfont{\fontsize{11}{15}\selectfont}
+\setlength{\columnsep}{1cm}
+
+
+\title{\textbf{Slinky Waves}\vspace{-1.5em}}
+\author{James Li (1007974248) & Nicholas Lupu-Muslea (1007896154)}\vspace{-2em}
+\date{November 15, 2022}
+
+\renewenvironment{abstract}
+ {\small
+  \begin{center}
+  \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
+  \end{center}
+  \list{}{
+    \setlength{\leftmargin}{0cm}%
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \item\relax}
+ {\endlist}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+This experiment seeks to model and help visualize the propagation of waves in a dispersive medium using a slinky coil system vertically hung by strings. In this way, a pendulum system with a gravitational restoring force is simulated in addition to a wave system. Different values of driving frequencies ($\omega < \omega_0$, $\omega > \omega_0$, $\omega = \omega_0$) were tested in order to establish varying behaviors. Filtering combs were used to lower the string length of the pendulum, creating resonant frequencies in certain sections of the coil. Experimental results show that for $\omega << \omega_0$, the amplitude of the wave undergoes exponential decay, whereas for $\omega = \omega_0$, it undergoes linear decay. In addition, when reducing string length of certain sections using the combs, resonant behavior could be observed; the wave energy can tunnel through non-resonant sections and continue to resonate. Upon abruptly removing a comb and the driving frequency can simulate the behavior of a coupled oscillator, further elucidating the principle of tunneling.
+    
+\end{abstract}
+
+
+\section{Introduction}
+
+The slinky wave machine system is used as a way of modelling dispersive wave propagation, where the coils move at a different wave speed with frequency. The system is a slinky with many coils, each suspended vertically by strings; thus, each coil acts as a pendulum system, where the string length is the length and the individual coil mass is the mass. Unfortunately, this set-up complicates the relationship between the wave number, k, and the driving frequency, $\omega$ beyond:
+
+\begin{equation}
+    \omega = \sqrt{\omega_0^2 + c_0^2k^2} \longrightarrow k^2 = \frac{\omega^2 - \omega_0^2}{c_0^2}
+\end{equation}
+
+where $\omega_0$ is the angular frequency of an individual slinky coil and c$_0$ is the wave speed of a non-dispersive system, as if the slinky were stretched over a frictionless surface.
+
+The following set of experiments set to determine a relationship between all of the listed properties of the slinky system, with a range of different driving frequencies ($\omega$):
+
+\begin{itemize}
+    \item $\omega > \omega_0$, driving frequency is greater than the coil angular frequency
+    \item $\omega < \omega_0$, driving frequency is lesser than the coil angular frequency
+    \item $\omega = \omega_0$, driving frequency is equal to the coil angular frequency
+\end{itemize}
+
+\subsection{Case 1: $\omega > \omega_0$}
+
+When the driving frequency is greater than the individual coil frequency, the system can propagate k real waves, as shown in equation 1. If $\omega > \omega_0$, then $\omega - \omega_0 > 0$ and $\omega^2 - \omega_0^2 > 0$, which guarantees k$^2 >$ 0 since the wave speed, c$_0$ is always positive. It is also known that the number of waves is indirectly proportional to the wavelength of each wave, with their relationship being k = $\frac{2\pi}{\lambda}$.
+
+The motion of the waves travelling leftward and rightward can be modelled by the following functions:
+
+\begin{equation*}
+    y_l = A_l\cos{(\omega t + kx + \phi_l)}    
+\end{equation*}
+\begin{equation*}
+    y_r = A_r\cos{(\omega t + kx + \phi_r)}    
+\end{equation*}
+where y = y$_l$ + y$_r$. This expression of y can be simplified by:
+\begin{align*}
+    y &= A_l\cos{(\omega t + kx + \phi_l)} + A_r\cos{(\omega t + kx + \phi_r)} \\
+    y &= y_0\sin{(\omega t)}\sin{(kL)} \text{, and if it is being driven by a sinusoidal force:} \\
+    y &= y_d\sin{(\omega t)} \\
+    y_0 &= \frac{y_d}{\sin{(kL)}}
+\end{align*}
+The equation for the speed of phase propagation is given by:
+
+\begin{equation}
+    c = \frac{\omega}{k} = \frac{\omega c_0}{\sqrt{\omega^2 - \omega_0^2}}
+\end{equation}
+
+\subsection{Case 2: $\omega < \omega_0$}
+
+Interestingly, in this case, no real waves can be propagated since the wave number, k, is an imaginary number (k$^2$ < 0). Similar to the real wave case, the motion of the imaginary wave travelling leftward and rightward can be modelled as:
+
+\begin{equation*}
+    y_l = A_l\cos{(\omega t + kx + \phi_l)}e^{kx}
+\end{equation*}
+\begin{equation*}
+    y_r = A_r\cos{(\omega t + kx - \phi_r)}e^{-kx}
+\end{equation*}
+
+Given these equations of motion, it can be inferred that the amplitude of the waves will experience exponential decay. Since the coil frequency ($\omega_0$) is higher than the driving frequency ($\omega$), the system will experience the pendulum effect more than the driving effect; essentially, the restoring force that gravity acts on the individual coils will cause the coils to be pulled back to its original position, lowering the amplitude with each cycle.
+
+The motion of the leftward and rightward waves (y) can be modelled using one equation, where y = y$_l$ + y$_r$:
+
+\begin{align}
+    y &= y_l + y_r \\
+    y &= y_0\sin{(\omega t)}(e^{kx} - e^{-kx})
+\end{align}
+
+This equation implies that the motion of the imaginary wave is exponentially dependent, where it is being defined by a combination of two exponential functions. 
+
+\subsection{Case 3: $\omega = \omega_0$}
+
+This case is the simplest case to explore as the amplitude of the wave diminishes linearly from the point where the driving force is being applied to the arbitrary origin (0,0). The motion of the wave can be modelled as such:
+
+\begin{equation}
+    y = y_d\frac{x}{L}\sin{(\omega t)}
+\end{equation}
+
+\section{Materials and Methods}
+
+Unlike a traditional laboratory experiment, this setup does not yield much data that is beneficial to quantitative analysis. Instead, qualitative assessments must be conducted given results obtained and patterns observed when driving the slinky coils at various frequencies. That being said, a limited amount of materials were utilized to conduct this experiment:
+
+\begin{itemize}
+    \item The slinky apparatus \textbf{(see figure 1)} -- 2m long slinky coil attached by strings with combs to adjust effective string length (in effect, changing $\omega_0$)
+    \item Smartphone Timer ($\pm$0.005s accuracy)
+    \item Tape, Measuring Tape ($\pm$0.05cm accuracy), Meter Stick ($\pm$0.05cm accuracy)
+\end{itemize}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.32]{images (there are none)/slink.jpg}
+    \caption{Slinky Wave Apparatus used to conduct various experiments; dark grey comb-like bars are the combs used to decrease the vertical, pendulum string length.}
+    \label{fig:my_label}
+\end{figure}
+
+Although the lab manual suggested to only perform certain steps, all steps and experiments had been conducted, though perhaps not to the depth required to obtain a profound understanding of dispersive wave propagation.
+
+In steps 1 and 2, a singular pulse of maximum driving frequency was applied to the slinky system, and the period of one cycle was timed using a stopwatch. Conclusive values for c$_0$ and $\omega_0$ were determined using empirical formulas and by measuring the string and total coil length, such as $\omega_0 = \sqrt{\frac{g}{L}}$ for a pendulum system. This step establishes the foundation for energy dissipation since the pulse sent across is notably faster than the pulse reflected after reaching the wave boundary.
+
+In step 3, the slinky wave system was driven at frequencies in the propagating range, where $\omega > \omega_0$, and the distances between the nodes were measured to determine the k value in relation to $\omega$. By doing this, the $\omega_0$ and c$_0$ values can be determined by matching a linear fit to equation 1.
+
+In step 4, the slinky wave system is driven at a high frequency (greater than $\omega_0$) to discover resonant frequency values. In addition, establishing if the different resonant frequency values are integer multiples of each other in practice is a secondary element when observing and obtaining resonant frequencies.
+
+In steps 5 and 6, pieces of tape were spread across the coil to determine the relationship between the distance from the origin (y = 0, leftmost coil in Figure 1) and the amplitude decay. By taking measurements of each tape at both of the extremities (leftmost, rightmost, center) and driving the slinky at outlier cases ($\omega = \omega_0$, $\omega << \omega_0$), the relationship between amplitude decay and distance from origin can be determined and fit on both a non-linear (exponential) and linear fit curve.
+
+In step 7,  the filtering combs were used to decrease the vertical string length of each coil; in effect, the $\omega_0$ of the section where the combs were lowered increased. This helps determine a range of $\omega$ values where the wave cannot be propagated with the combs lowered but can be propagated without the combs. In step 8, the middle and rightmost combs were lowered in order to isolate the first third of the coil. This allows the resonant frequency in the first section of the coil to be analysed. Step 9 required the leftmost and middle combs to be lowered to observe the resonant frequency of the furthest section.
+
+In step 10, the first section is allowed to resonate while the combs are lowered over the other two sections. The rightmost comb must then be lifted simultaneously while the driving motor is turned off. This creates a system of coupled oscillators since the third section resonates due to the lifting of the rightmost comb.
+
+\section{Data and Analysis}
+\subsection{Steps 1 and 2:}
+
+With the driving motor set to near its maximum speed, a pulse was sent to the slinky wave system, and the time it took for the wave to complete one period was timed with a stopwatch. The uncertainty of the time is based off the display of the stopwatch only displaying up to a hundredth of a second.
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            Trial 1 & Trial 2 & Trial 3 & Trial 4 & Average\\
+            \hline
+            0.81$\pm$0.005s& 0.62$\pm$0.005s & 0.753$\pm$0.005s & 0.58$\pm$0.005s & 0.69$\pm$0.005s \\
+            \hline
+        \end{tabular}
+    \caption{Time trials of the period when driven at maximum motor speed.}
+    \label{tab:my_label}
+\end{table}
+
+
+Other important values and formulas to note for these sections:
+
+\begin{itemize}
+    \item $\omega = \frac{2\pi}{t_{\text{avg}}}$
+    \item c = $\frac{2\cdot d}{t_{\text{avg}}}$, where d is the distance travelled from one end of the slinky to the other.
+    \item $\omega_0 = \sqrt{\frac{g}{L}}$. This relationship is established in a simple pendulum system, where g is gravitational force and L is the string length.
+    \item k = $\frac{\omega}{c}$ = $\frac{\pi}{d}$, obtained by rearranging equation 2.
+    \item length of the entire coil (d) = 197.2 $\pm$ 0.05 cm.
+    \item length of string length (L) = 88.5 $\pm$ 0.05 cm.
+\end{itemize}
+
+The values above can be calculated:
+
+\begin{itemize}
+    \item $\omega_0 = \sqrt{\frac{9.81 \frac{m}{s^2}}{0.885 m}}$  = 3.329 $\pm$ 0.2 $\frac{rad}{s}$
+    \item $\omega = \frac{2\pi}{0.69 s}$ = 9.11 $\pm$ 0.03 $\frac{rad}{s}$
+    \item c = $\frac{2\cdot 1.972 m}{2.48 s}$ = 1.59 $\pm$ 0.08$\frac{m}{s}$
+    \item c$_0$ = $\frac{c\sqrt{\omega^2 - \omega_0^2}}{\omega} = \frac{1.59\sqrt{9,11^2 - 3.329^2}}{9.11}$ = 1.48 $\pm$ 0.08 $\frac{m}{s}$
+\end{itemize}
+
+The frequency values match the initial condition set where $\omega > \omega_0$.
+
+\subsection{Step 3:}
+
+The data for step 3 is denoted below, where d$_{node}$ is the distance between nodes:
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            Motor Speed & t$_{avg}$ ($\pm$0.005s) & $\omega$ (rad/s) & d$_{node}$  ($\pm$0.05cm) & k \\
+            \hline
+            Maximum & 0.69 & 9.11 & 66.5 & 0.0472 \\
+            \hline
+            100 & 0.72 & 8.79 & 71.2 & 0.0441 \\
+            \hline
+            90 & 0.86 & 7.33 & 82.4 & 0.0381 \\
+            \hline
+            70 & 0.995 & 6.31 & 103.6 & 0.0303 \\
+            \hline
+            50 & 1.48 & 4.39 & 155.1 & 0.0202 \\
+            \hline
+        \end{tabular}
+    \caption{Adjacent node distance and driving frequency measurements.}
+    \label{tab:my_label}
+\end{table}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.65]{images (there are none)/ω^2 vs. k^2.png}
+    \caption{Linear fit denoting the relationship between $\omega$ and the k value of the system. There are errors bars in the graph, but they are insignificantly negligible and cannot be noted in the image.}
+    \label{fig:my_label}
+\end{figure}
+
+By manipulating equation 1, it can be modelled as a linear equation, which can be matched to the linear fit seen above to determine c$_0$ and $\omega_0$.
+
+\begin{align*}
+    \omega &= \sqrt{\omega_0^2 + c_0^2k^2} \\
+    \omega^2 &= \omega_0^2 + c_0^2k^2
+\end{align*}
+
+In this fashion, c$_0^2$ can be established as the slope of the independent variable k$^2$ and $\omega_0^2$ can be established as the y-intercept. 
+
+Though the reduced-chi squared value does not indicate that the linear fit is entirely accurate, the residuals do, which shows that there is no significant error encountered when obtaining data points. Since the uncertainty of the data points is essentially negligible, this causes the chi-squared value to be much higher, which indicates that this linear fit is suitable:
+
+\begin{itemize}
+    \item $\chi_{\nu}^2$ = 39.3
+    \item residuals = 0.022
+\end{itemize}
+
+The uncertainty of the linear fit can also be determined, which, in turn, determines the uncertainty of c$_0^2$ and $\omega_0^2$:
+
+\begin{itemize}
+    \item slope (m) = c$_0^2$ = 35406 $\pm$ 1918, c$_0$ = 188 $\pm$ 43.8 m/s
+    \item y-intercept (b) = $\omega_0^2$ = 5.31 $\pm$ 2.95, $\omega_0$ = 2.30 $\pm$ 1.72 rad/s
+\end{itemize}
+
+\subsection{Step 4:}
+
+With the slinky machine, the 3rd harmonic  (n = 3) was observed when the driving/motor speed is 92 and the driving frequency is $\omega \approx 7.5$ radians/second. Since the standing wave is fixed on both ends, noting 4 nodes/antinodes signifies that it is the 3rd harmonic. However, no other harmonics could be observed when either increasing or decreasing the motor speed. Thus, although the theoretical relationship between the different harmonics being integral multiples has been established, there is not enough experimental evidence established from this system that validates that relationship.
+
+\subsection{Step 5:}
+
+To drive the slinky at a driving frequency $\omega << \omega_0$ means to drive the slinky at a frequency near 0 rad/s. To conduct this experiment, the motion of the wave was split up into three stages: rest, left and right. This was done in order to determine the amplitude of one wave cycle.
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            Position no. & Position at Rest (cm) & Left Position (cm) & Right Position (cm)\\
+            \hline
+            1 & 10.1$\pm$0.05 & 7.5$\pm$0.05 & 12.4$\pm$0.05 \\
+            \hline
+            2 & 31.5$\pm$0.05 & 29.9$\pm$0.05 & 32.7$\pm$0.05 \\
+            \hline
+            3 & 59.2$\pm$0.05 & 58.4$\pm$0.05 & 60.1$\pm$0.05 \\
+            \hline
+            4 & 124.6$\pm$0.05 & 124.5$\pm$0.05 & 124.7$\pm$0.05 \\
+            \hline
+            5 & 182.4$\pm$0.05 & 182.4$\pm$0.05 & 182.4$\pm$0.05 \\
+            \hline
+        \end{tabular}
+    \caption{Coil position measurements when driven at $\omega < \omega_0$.}
+    \label{tab:my_label}
+\end{table}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.65]{images (there are none)/y (Amplitude) vs. x (distance) (2).png}
+    \caption{Exponential fit modelling the relationship between the amplitude decay and the distance from the arbitrary origin. The error bar is $\pm$0.05 about the data point.}
+    \label{fig:my_label}
+\end{figure}
+
+The relationship between the amplitude decay and the distance to the origin can be modelled accurately with the equation: 
+\begin{equation}
+    y = 3.16e^{-0.0245x}
+\end{equation}
+
+The reduced-chi squared and residuals of this fit both indicate that the data obtained can be accurately modelled with the above equation:
+
+\vspace{-1.5em}
+
+\begin{itemize}
+    \item $\chi^2_\nu$ = 2.613
+    \item Residuals = -0.05
+\end{itemize}
+
+Contrary to equation 4, the decay of the amplitude does not need to be described using 2 exponential equations; rather, one exponential decay equation suffices, as seen by equation 6.
+
+\subsection{Step 6:}
+
+Using an identical setup to step 5, except driving the frequency at the same frequency as $\omega_0$ (3.329 rad/s, motor speed = 42), the following positions were obtained:
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            Position no. & Position at Rest (cm) & Left Position (cm) & Right Position (cm)\\
+            \hline
+            1 & 10.1$\pm$0.05 & 7.8$\pm$0.05 & 12.5$\pm$0.05 \\
+            \hline
+            2 & 31.5$\pm$0.05 & 29.5$\pm$0.05 & 33.9$\pm$0.05 \\
+            \hline
+            3 & 59.2$\pm$0.05 & 57.9$\pm$0.05 & 61.0$\pm$0.05 \\
+            \hline
+            4 & 124.7$\pm$0.05 & 124.0$\pm$0.05 & 125.4$\pm$0.05 \\
+            \hline
+            5 & 182.4$\pm$0.05 & 182.4$\pm$0.05 & 182.4$\pm$0.05 \\
+            \hline
+        \end{tabular}
+    \caption{Coil position measurements when driven at $\omega = \omega_0$.}
+    \label{tab:my_label}
+\end{table}
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.65]{images (there are none)/y (Amplitude) vs. x (distance) (3).png}
+    \caption{Linear fit modelling the linear decay of the amplitude in relation to the distance from the arbitrary origin point. The error bars are $\pm$0.05 about the data points.}
+    \label{fig:my_label}
+\end{figure}
+
+The reduced-chi squared and residuals of this fit both indicate that the data obtained can be accurately modelled with the above equation:
+
+\begin{itemize}
+    \item $\chi^2_\nu$ = 2.988
+    \item Residuals = -0.091
+\end{itemize}
+
+The uncertainty of the linear fit can also be determined:
+
+\begin{itemize}
+    \item slope (m) = -0.0138 $\pm$ 0.0006
+    \item y-intercept (b) = 2.46 $\pm$ 0.063
+\end{itemize}
+
+The relationship between amplitude decay and distance from origin agrees with equation 5, which essentially models a linear decay relationship. The amplitude of the waveform is inversely proportional to the distance it is being driven at.
+
+\begin{equation}
+    y = y_d\frac{x}{L}\sin{(\omega t)} 
+\end{equation}
+
+where y$_d$ is the amplitude at the point of interest and x is the point of interest. To explain the linear decay relationship, y remains constant; thus, as x increases (or approaches the fixed end opposite of the origin), the amplitude (y$_d$) must decrease in order for y to remain constant.
+
+
+For the following sections, the image below will split the slinky coil into 3 different sections, namely sections 1, 2 and 3. These sections are split by the area that the combs cover and shorten the string length.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.65]{images (there are none)/slinky combs.jpg}
+    \caption{The slinky coil setup broken down into 3 separate sections based on the area the filtering combs cover.}
+    \label{fig:my_label}
+\end{figure}
+\vfill\pagebreak
+
+\subsection{Step 7:}
+
+When measuring the frequency for the shortened string lengths, the motor was driven at its maximum frequency in order to compare it to the frequency of the unshortened string lengths from Steps 1 and 2. The frequency of the shortened string length was found to be approximately 6.918 rad/s. Thus, the range of $\omega$ where waves cannot be propagated through the shortened waves is \textbf{6.918 rad/s $< \omega <$ 9.11 rad/s}.
+
+\subsection{Steps 8 and 9:}
+
+The slinky wave setup is split into thirds by the combs. A resonant frequency for a single section would require a node at the rightmost end (fixed end opposite of the origin, x = 0), or the left side of the middle comb, which is lowered. Therefore, nodes would have to occur at each third of the length of the entire slinky. 
+
+At the n = 3 value of the resonance frequency family, or 7.817 rad/s, there would be a node at the rightmost end of the raised section of the slinky (section 1). This can be modeled as the n = 1 resonance frequency for just section 1, the region of the slinky coil with the raised comb. While this is not the exact frequency of resonance, as the right undriven end is not perfectly fixed in the setup, resonant behaviour still holds for section 1.
+
+Similarly to step 8, two of the filtering combs were lowered, splitting the coil into thirds; however, this time, sections 1 and 2 were lowered, leaving the vertical strings in section 3 unshortened.
+
+The behavior was not perfect, as section 3 did not have two perfectly fixed ends. In addition, the slinky setup was not perfect, leading to some energy loss as the pulses were driven across the system, but the energy generally tunneled through the raised section and demonstrated resonant behavior in section 3 of the slinky.
+
+\subsection{Steps 10 and 11:}
+
+Once again, the slinky had to be driven at the n = 3 frequency to observe resonant behavior in the left section. Once this was set up, the motor had to be turned off and the comb in section 3 lifted simultaneously.
+
+When this occurred, energy could be observed tunneling between the middle section, which still had a lowered comb, in either direction. Initially, both sections 1 and 3 could be observed oscillating at 7.817 rad/s, the n = 3 resonant frequency for the entire slinky, but it dissipated over time since the barriers are not fixed and section 2 continued to experience energy loss. However, a coupled oscillation could still be simulated with the waves from in sections 1 and 3. The beat period of the coupled oscillation was timed at about 0.8 seconds, making the beat frequency 7.85 rad/s. Essentially, a beat could be heard every 0.8 seconds, and its frequency was calculated using $\omega = \frac{2\pi}{T}$. 
+
+The 7.817 rad/s resonance frequency can be split into a symmetric frequency at 7.563 rad/s and an asymmetric frequency at 8.07 rad/s. 
+These are very similar to the beat frequency, which is also close to the superposition frequency.
+
+\section{Discussion and Conclusion}
+
+Over the procedure of the lab, there were a few potential sources of error. The first source is that the lab was performed over two different days, and on two different slinky machine setups. This could have resulted in different frequency values between the days, affecting the results of the experiments. Additionally, both machines that were used may have not been experimentally ideal, especially when raising and lowering the filtering combs. The strings around each coil of the slinky would not hang perfectly and would be slack, so the combs may have not shortened the length of the pendulum to the expected amount. 
+
+Another source of error was that part 10 called for the motor to be shut off and for the rightmost comb to be lowered simultaneously. However, one of the group members was unable to attend the lab session on that day, so it was impossible to perform both actions simultaneously. The actions were performed as close together as possible to minimize error, but this may have still affected the dissipation or resonant behavior of the coupled oscillations. Building off of this source, several results of this experiment may be flawed as a result of timer inaccuracy due to reaction speed. 
+
+Lastly, perfect resonant behavior in the leftmost and rightmost section may not have been observed, since lowering the combs does not provide a perfect fixed end for the standing wave, so the generalization that the n = 3 resonant value will be equal to the n = 1 for the individual sections is not a perfect assumption due to not having two fixed ends.
+
+In conclusion, many characteristics of the slinky wave were observed through experimentation. Notably, it was proven that at frequencies much less than the natural frequency, energy dissipation is exponential, and that at equal or greater frequencies, amplitude decay is linear. A family of resonant frequencies was discovered for the slinky. In relation to this resonant frequency, it was demonstrated that resonant behavior can be observed in certain sections, and that the energy can tunnel through non-resonant portions of the slinky and will continue to resonate. Lastly, a coupled oscillation was created between different sections through the principle of tunneling, and the beat and superposition frequencies were determined and evaluated in relation to each other.
+
+\vfill\pagebreak
+
+\appendix
+\section{Additional Calculations:}
+
+\subsection{Steps 1 and 2:}
+
+The error propagation calculation for $\omega_0$ can be calculated as:
+
+\begin{align*}
+    \Delta\omega_0 &= \sqrt{g \cdot (\frac{df}{dL}\Delta L)^2} \\
+    \Delta\omega_0 &= \sqrt{g \cdot (-\frac{1}{L^2}\cdot \Delta L)^2} \\
+    \Delta\omega_0 &= \sqrt{9.81(-\frac{1}{0.885^2}\cdot 0.05)^2} \\
+    \Delta\omega_0 &= 0.199
+\end{align*}
+
+The error propagation calculation for $\omega$ can be calculated as:
+
+\begin{align*}
+    \Delta\omega &= \sqrt{2\pi \cdot (\frac{df}{dt}\Delta t)^2} \\
+    \Delta\omega_0 &= \sqrt{2\pi \cdot (-\frac{1}{t^2}\cdot \Delta t)^2} \\
+    \Delta\omega_0 &= \sqrt{2\pi(-\frac{1}{0.69^2}\cdot 0.005)^2} \\
+    \Delta\omega_0 &= 0.026
+\end{align*}
+
+The error propagation calculation for c can be calculated as:
+
+\begin{align*}
+    \frac{\Delta c}{c} &= 2\sqrt{(\frac{\Delta d}{d})^2 + (\frac{\Delta t}{t})^2} \\
+    \Delta c &= 2(1.59)\sqrt{(\frac{0.05}{1.972})^2 + (\frac{0.005}{0.69})^2} \\
+    \Delta c &=  0.0838\\
+\end{align*}
+
+\vfill\pagebreak
+
+The error propagation calculation for c$_0$ can be calculated as:
+
+\begin{align*}
+    (\Delta c_0)^2 &= (\frac{\partial f}{\partial c}\Delta c)^2 + (\frac{\partial f}{\partial \omega}\Delta\omega)^2 + (\frac{\partial f}{\partial \omega_0}\Delta \omega_0)^2 \\
+    (\Delta c_0)^2 &= (\frac{\sqrt{\omega^2 - \omega_0^2}}{\omega}\Delta c)^2 + (\frac{c\omega_0^2}{\omega^2\sqrt{\omega^2 - \omega_0^2}}\Delta\omega)^2 + (-\frac{2c\omega_0}{\omega\sqrt{\omega^2 - \omega_0^2}}\Delta\omega_0)^2 \\
+    (\Delta c_0)^2 &= (\frac{\sqrt{9.11^2 - 3.329^2}}{9.11}\cdot 0.0838)^2 + (\frac{1.59 \cdot 1.48^2}{9.11^2\sqrt{9.11^2 - 3.329^2}}\cdot0.026)^2 + (-\frac{2(0.0838)(3.329)}{9.11\sqrt{9.11^2 - 3.329^2}}\cdot 0.199)^2\\
+    \Delta c_0 &= 0.078
+\end{align*}
+
+\subsection{Step 3:}
+
+The reduced-chi squared value of the linear fit was calculated as:
+
+\begin{align*}
+    \chi_\nu^2 = \frac{1}{N-2}\sum_{i=1}^N\frac{[y_i - f(x_i)]^2}{\sigma_{y_i}^2} = \frac{1}{3}(5.985+32.85+48+26.48+4.587) = 39.3
+\end{align*}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.55]{images (there are none)/step3.PNG}
+    \caption{Data values calculated for Step 3.}
+    \label{fig:my_label}
+\end{figure}
+
+The uncertainties for the linear fit were calculated with the following equations:
+
+\begin{align*}
+    \Delta &= N\sum(x_i)^2 - (\sum(x_i))^2 = 1.1 \times 10^{-5} \\
+    s_{y,x}^2 &= \frac{1}{N-2}\sum[y_i - f(x_i)]^2 = 8.108\\
+    s_m^2 &= N\frac{s_{y,x}^2}{\Delta} = 3.68 \times 10^{6} \\
+    s_b^2 &= \frac{s_{y,x}^2\sum x_i^2}{\Delta} = 8.75
+\end{align*}
+
+\subsection{Step 5:}
+
+The reduced-chi squared value of the exponential fit was calculated as:
+
+\begin{align*}
+    \chi_\nu^2 = \frac{1}{N-2}\sum_{i=1}^N\frac{[y_i - f(x_i)]^2}{\sigma_{y_i}^2} = \frac{1}{3}(0.1196+1.467+4.757+0.97+0.5247) = 2.613
+\end{align*}
+
+where f(x$_i$) was computed using the fitted function.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.7]{images (there are none)/step 5 calcs.PNG}
+    \caption{Data values calculated for Step 5.}
+    \label{fig:my_label}
+\end{figure}
+
+\subsection{Step 6:}
+
+The reduced-chi squared value of the linear fit was calculated as:
+
+\begin{align*}
+    \chi_\nu^2 = \frac{1}{N-2}\sum_{i=1}^N\frac{[y_i - f(x_i)]^2}{\sigma_{y_i}^2} = \frac{1}{3}(0.0296+0.673+5.88+1.24+1.15) = 2.99
+\end{align*}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.55]{images (there are none)/step 6 clacs.PNG}
+    \caption{Data values calculated for Step 6.}
+    \label{fig:my_label}
+\end{figure}
+
+The uncertainties for the linear fit were calculated with the following equations:
+
+\begin{align*}
+    \Delta &= N\sum(x_i)^2 - (\sum(x_i))^2 = 100668.3 \\
+    s_{y,x}^2 &= \frac{1}{N-2}\sum[y_i - f(x_i)]^2 = 0.0075\\
+    s_m^2 &= N\frac{s_{y,x}^2}{\Delta} = 3.8 \times 10^{-7} \\
+    s_b^2 &= \frac{s_{y,x}^2\sum x_i^2}{\Delta} = 0.004
+\end{align*}
+
+\end{document}
