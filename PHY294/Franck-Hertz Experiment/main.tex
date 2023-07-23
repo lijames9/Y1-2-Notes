@@ -1,0 +1,244 @@
+\documentclass[12pt, letterpaper, twoside]{article}
+\usepackage[legalpaper, portrait, margin=1in]{geometry}
+\usepackage{multicol,caption}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\thesection.\Roman{subsection}}
+\graphicspath{ {./images/} }
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{tabu}
+\usepackage[table]{xcolor}
+\usepackage{pdflscape}
+\usepackage{makecell}
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{subfiles}
+\usepackage{afterpage}
+\usepackage{filecontents}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Franck-Hertz Experiment}
+\rhead{PHY294}
+
+\DeclareCaptionType{equ}[][]
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.9em}
+
+\setlength{\columnsep}{1cm}
+
+\title{\textbf{Franck-Hertz Experiment}}
+\author{James Li (1007974248) \\
+Claire Zhang (1008001822)}\vspace{-2em}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+In 1914, German scientists James Franck and Gustav Hertz developed an electrical experiment to demonstrate the quantum nature of atoms by bombarding mercury atoms with electron beams to show that the electrons lose discrete amounts of energy when colliding with the mercury atoms. This discovery of the discrete loss of energy in electrons confirms the quantum theory that electrons can only occupy discrete, quantized energy states \textbf{---} the concept of quantization of energy levels in Bohr's model of the atom.
+
+As electrons bombard the mercury atoms, the collisions exhibited are elastic collisions, which result in no loss of energy. When the energy of the electrons colliding with the mercury atoms reach 4.9 eV, a sharp loss in energy is observed, resulting in an emission of photons (light). As a result, the energy level of the electron is raised. Planck's relation can show that the wavelength corresponding to the 4.9 eV energy loss is equivalent to mercury's first light emission wavelength of 254nm.
+\begin{equation}
+    E_{photon} = 4.9 eV = \frac{hc}{\lambda}\label{eqn:planck}
+\end{equation}
+\begin{equation*}
+    \lambda_{Hg} = \frac{hc}{E_{photon}} \approx 254\text{nm}
+\end{equation*}
+
+The purpose of this lab is to experimentally identify mercury's first excitation energy and emission spectrum wavelength, discuss the superiority of mercury over diatomic hydrogen, and justify why the experimental plot was smoother than a proposed sawtooth model. Overall, Bohr's model of the atom, including light emission and quantized energy levels, are supported by the Franck-Hertz Experiment.
+
+
+\section{Procedure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.8]{pics/FH setup.png}
+    \caption{Experimental equipment setup with labels.}
+    \label{fig:setup}
+\end{figure}
+
+\begin{table}[!ht]
+    \centering
+        \begin{tabular}{|p{2.4cm}|p{5cm}|p{4cm}|}
+            \multicolumn{3}{c}{\textbf{Materials List}}\\
+            \hline
+            Franck-Hertz Apparatus * & Computer with LabView Software & Keithley Electrometer \\
+            \hline
+            Heating Oven & \multicolumn{2}{c|}{Mercury tube \textbf{--} has electron emitting filament, mercury vapor inside}\\
+            \hline
+        \end{tabular}
+        \caption{List of Materials used in Franck-Hertz experiment.}
+        \label{tab:materials}
+\end{table}
+\vfill\pagebreak
+
+\begin{small}
+    * The Franck-Hertz apparatus has several connections to the power supply with different functions (see Figure \ref{fig:setup}):
+    \begin{enumerate}
+        \item \textbf{E1:} The filament supply, fixed at 6.3V DC.
+        \item \textbf{E2:} The screen grid voltage, alterable voltage.
+        \item \textbf{E3:} The accelerating voltage, alterable sweep voltage.
+        \item \textbf{E4:} A fixed voltage to repel low energy electrons, fixed at 1.5V DC.
+    \end{enumerate}
+\end{small}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/FH circuit.png}
+    \caption{Circuit schematic for experimental setup.}
+    \label{fig:circuit}
+\end{figure}
+
+\subsection{Data Collection Method}
+Prior to starting data collection, the first step is to turn on the oven, heat the mercury tube to 170 $\pm$ 5$^{\circ}$C and turn on the LabView Franck-Hertz program. Next, the Franck-Hertz Apparatus is correctly connected to the power source according to the circuit diagram (see Figure \ref{fig:circuit}) via banana wires. 
+
+To collect data, the voltage power, the sweep rate and reset switches are turned “ON” (upwards). Simultaneously, adjust the sweeping voltage rate and electrometer until LabView shows a smooth graph (prominent peaks and valleys). The resulting graph should be comparing the current in amperes versus the accelerating voltage in volts. Between trials, the voltage power, the sweep rate and reset switches should be switched “OFF” (downwards) after saving the data on the LabView software. For the best graphs, the E2 voltages used were 2.2 $\pm$ 0.05 V and 3.3 $\pm$ 0.05 V, with a sweep rate of 100 $\pm$ 0.5, and an electrometer current of 3$\times $10$^{-9}$ A for 15 trials.
+
+The chosen trials were the best 5 data-sets with smooth and regularly spaced ammeter readings as observed visually through LabView. In this fashion, the locations of the minima on the graph corresponding to the accelerating potential at which the energy loss occurs can easily be identified.
+
+\section{Data Analysis}
+
+After exporting the data-set from LabView, the .txt files containing the current and accelerating voltage values (x-y values on the LabView graphs) were analyzed using a Python program to find the minima of the graph (Figure \ref{fig:maingraph} below). Repeating this process for 5 data-sets at different voltages resulted in functions with different amplitudes but similar periods (color-coded on Figure \ref{fig:excelgraph} using Excel). 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/FH V vs A.png}
+    \caption{The electron energy (accelerating potential) graphed against the current.}
+    \label{fig:maingraph}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{pics/Excel.png}
+    \caption{5 Data-sets on one Excel graph to show the different amplitudes and similar periods.}
+    \label{fig:excelgraph}
+\end{figure}
+
+Since the trials had the same amount of peaks and valleys, the horizontal position was collected and averaged for the 5 data-sets at valleys 1 through 5. Next, the difference in distance between each averaged minimum point was calculated. Finally, knowing that the relative energy transferred is constant, the differences were averaged to find a final difference in distance between minimum points (Figure \ref{fig:rawdata}). 
+\vfill\pagebreak
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{pics/FH Data.png}
+    \caption{5 data-sets analyzed to find the average difference in distance between minima.}
+    \label{fig:rawdata}
+\end{figure}
+
+Finally, the average difference in accelerating voltage between valleys 1 to 5 were graphed with a linear fit. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{pics/FH_Linear Fit.png}
+    \includegraphics{pics/FH_residuals.png}
+    \caption{Linear fit of the average difference of distance between minima for 5 indexed valleys (\textbf{top}); residuals of linear regression fit with visible uncertainties (\textbf{bottom}).}
+    \label{fig:data}
+\end{figure}
+
+The goodness of fit criteria used were reduced chi-squared and residuals. The residuals plot can be seen above in Figure \ref{fig:data}. The reduced chi-squared value is calculated to be 1.32 using the following equation, indicating an appropriate linear fit:
+
+\begin{equation}
+    \chi_{\nu}^2 = \frac{1}{\nu}\sum_{i=1}^N\frac{[y_i - f(x_i)]^2}{\sigma_{y_i}^2} = 1.32 \label{chisq} 
+\end{equation}
+
+\section{Discussion}
+
+\subsection{Energy Transfer from an Inelastic Collision}
+
+As mentioned in the introduction, when electrons bombard the mercury atoms, the majority of the collisions exhibited are elastic, meaning that no energy is lost when the collision occurs. However, at certain acceleration potentials, the collision becomes inelastic, resulting in a transfer of energy from the electron to the Hg atom; this result is displayed by the gradual drop of current seen in Figure \ref{fig:maingraph}. The value of the transferred energy is equivalent to the horizontal distance between the minima \textbf{---} in this case, 5.12 $\pm$ 0.353 eV, which falls within the theoretical value of 4.9 eV, given the lower bound of the uncertainty. The percent deviation of the experimental value is:
+
+\begin{equation*}
+    \%\text{ error} = \frac{5.12 - 4.9}{4.9} = 4.5\% 
+\end{equation*}
+
+\subsection{Emission of Photons by the Decay of Mercury Atoms}
+
+The wavelength of the photons emitted can be calculated using Planck's relation, or Equation \ref{eqn:planck}, and using the energy transfer found in Section III.I as the energy of the photon emitted, with $h = 4.1357 \times 10^{-15}$ eV$\cdot$s and $c = 3 \times 10^{8}$ $\frac{m}{s}$: 
+
+\begin{equation*}
+    \lambda = \frac{hc}{E_{photon}} = 242\pm11\text{nm}
+\end{equation*}
+
+\subsection{Choosing Vaporized Mercury over Hydrogen Gas}
+
+In Franck and Hertz's experiment, they choose to use vaporized mercury (Hg) over hydrogen gas (H$_2$), which seems contradictory in confirming Bohr's model of the atom since it models hydrogen-like atoms. The reason is that vaporized mercury found in nature is monoatomic, whereas hydrogen gas is diatomic. With diatomic hydrogen gas, when electrons transfer energy through collisions, it should be anticipated that the energy will first be contributed to breaking the covalent bond. In contrary, the energy from electron collision in vaporized mercury will contribute to the excitation of the mercury atom. 
+
+In addition, at room temperature, mercury exists in a liquid state as opposed to its counterparts with similar atomic masses, which exist in a solid state at room temperature. As such, less energy and a lower temperature are required to vaporize the liquid mercury in comparison with other elements, which makes it more practical to use in Franck and Hertz's experiment.
+
+\subsection{Shape of Current vs. Accelerating Potential Graph}
+
+Under ideal conditions, the expected shape of the current vs. accelerating potential graph should be a sawtooth graph \textbf{---} a linear increase in current with an increase in voltage and a sharp decrease at the ionization energies. However, the experiment involves bombarding a mercury atom with a beam of electrons. The individual electrons will all have different kinetic energies, lower or higher than the ionization energy, following a Maxwell-Boltzmann distribution (see Figure \ref{fig:maxwell} for a sample Maxwell-Boltzmann distribution). The likelihood that the energy of the electron colliding with the mercury atom to release an electron and change energy levels increases with the accelerating potential approaching integer multiples of 4.9 eV $(n4.9$ eV, n $\in \mathbb{Z}$). This explains the smoothing of the curve since not all electrons in the tube will cause the mercury atom to release an electron from the atom and raise its energy level. In addition, it is not a guarantee that the electrons will collide with the mercury atom at all despite being possessing sufficient ionization energy. There exists a possibility that the electrons simply escape the tube due to the minuscule size of atoms and not collide with any vaporized mercury.
+
+Another theory that could the explain the smooth nature of the curve is that the presence of other electrons can create repulsive electrostatic forces between the electrons and alter the kinetic energies of the electrons. Further experimentation that focuses on the electrostatic forces and the repulsive nature of the electrons should be conducted to draw a formal conclusion upon this theory since the evidence from the Franck-Hertz experiment does not explicitly convey this theory.
+
+\section{Sources of Error}
+
+The error was calculated based on the error of the E2 screen grid voltage, the E3 sweeping rate voltage, and the electrometer due to all 3 of these lab components being manually adjustable and susceptible to human error. The errors of E2 and E3 were 0.05 and $0.5 \times 10^{-9}$, respectively. E3 error is extremely small and is negligible in the calculation. Ultimately, the largest error contributor (E2) was chosen and its error value was propagated throughout voltage calculations and graphs in this lab (error propagation with Equation \ref{eqn:uncertainty}). External errors including temperature fluctuation were accounted for by tuning of the voltage sweeping rate to keep a visually smooth graph on LabView. 
+
+Given a function z = x + y, and uncertainties $\sigma_{x,y,z}$, the error can be propagated as follows:
+
+\begin{equation}
+    \sigma_z = \sqrt{\big(\sigma_x\big)^2 + \big(\sigma_y\big)^2} \label{eqn:uncertainty}
+\end{equation}
+
+Another external source of error includes the process of finding the maxima and minima current corresponding to the peaks and valleys in the Accelerating voltage. Though the uncertainty for the Python program is zero due to the usage of a built-in function, it is likely that the results are still skewed due to the fluctuating “zig-zag” movement of the graph (Figure \ref{fig:maingraph}). Even though the program can find the exact minima, due to the graph consistently overshooting and undershooting due to imperfect elastic collisions, a better estimation of the real value will be somewhere between the unsmoothed peaks/valleys.
+
+Note that if this experiment was done by visually examining the minima of the LabView outputted graph, the uncertainty would be the human error while choosing the lowest point of the valley (ie. pixels/cm distance on the computer screen).
+
+
+
+\section{Conclusion}
+
+In summary, this experiment aimed to replicate the Franck-Hertz experiment, which confirmed the quantization of electron energy levels in atoms according to Bohr's model. By bombarding vaporized mercury with electrons and measuring the voltage of the exiting electrons with an electrometer, the experiment showed dips in voltage at different sweep voltages. The minima of the Accelerating Voltage vs Current graph indicates the inelastic collisions between the electrons and mercury atoms that deposited discrete amounts of energy corresponding to mercury's first excitation energy. The measured excitation energy and emission spectrum wavelength were found to be 5.12 ± 0.353 eV and 242 ± 11nm respectively. Additionally, the experiment demonstrated the superiority of mercury over diatomic hydrogen and explained why the experimental plot was smoother than the proposed sawtooth model. While the goodness of fit metrics indicated successful linear regression, temperature as a source of error and error propagation calculations were considered. Overall, the experiment provided further evidence for the quantization of electron energy levels in atoms and replicated the Franck-Hertz experiment successfully.
+
+
+\vfill\pagebreak
+\appendix
+
+\begin{thebibliography}{10}
+    \bibitem{Manual} Serbanescu, R.M.; \textit{"The Franck-Hertz Experiment"}, 2017.
+    \bibitem{FH} Amrita, V.; vlab.amrita.edu,. (2011). Franck-Hertz Experiment. [Accessed: 8 March 2023], from \url{vlab.amrita.edu/?sub=1&brch=195&sim=355&cnt=1}
+\end{thebibliography}
+
+\section*{Additional Pictures}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale = 0.7]{pics/FH rawdata.png}
+    \caption{Sample of raw data collected from LabView software.}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{pics/maxwell.png}
+    \caption{Sample Maxwell-Boltzmann Distribution for Kinetic Energy}
+    \label{fig:maxwell}
+\end{figure}
+
+
+\end{document}
