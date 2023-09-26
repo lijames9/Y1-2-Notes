@@ -1,0 +1,117 @@
+\section{Lecture 4}
+
+We want to prove the following statement: if $A_1 \subset A_2 \subset A_3 \subset ...$, then $\mathbb{P}(\cup_{i=1}^{\infty} A_i)$ = $\lim_{i\rightarrow \infty}\mathbb{P}(A_i)$.
+
+\subsection{Properties of Indicator Functions}
+
+\begin{ppty}
+    $I(\bar{A}) = 1 - I(A)$ $\Longleftrightarrow$ $I_{\bar{A}}(\omega) = 1 - I_A(\omega)$ $\forall \omega$.
+\end{ppty}
+\begin{ppty}
+    If $A \subset B$, then $I(A) \leq I(B)$.
+\end{ppty}\label{property:indicator2}
+\begin{ppty}
+    $I(A \cup B) = max\{I(A), I(B)\}$.
+\end{ppty}
+\begin{ppty}
+    $I(A \cap B) = min\{I(A), I(B)\}$.
+\end{ppty}
+\begin{ppty}
+    $A_1 \subset A_2 \subset A_3 \subset ...$, then $I(\cup_{i=1}^{\infty} A_i)$ = $\text{sup}_{i=1}I(A_i) = \lim_{i\rightarrow\infty}I(A_i)$
+\end{ppty}\label{property:indicator5}
+
+
+\underline{\textbf{Proof of Property 2:}} We know that the space of A is smaller than the space of B and is a subset of B. 
+\begin{itemize}
+    \item If $\omega \in A$ \& $\omega \in B$, $\omega$ will be located within A, $I(A) \leq I(B)$.
+    \item If $\omega \notin A$ \& $\omega \in B$, then $\omega$ will be located 
+\end{itemize}
+
+\underline{\textbf{Proof of Property 5:}}
+
+\textbf{Case 1:} $\omega \in \cup_{i=1}^{\infty}A_i$. Using this, we find that:
+
+\begin{equation*}
+     \Rightarrow \exists k, \text{s.t. } \omega \in A_k \Rightarrow \omega \in A_j \forall j \geq k \Rightarrow I_{A_j}(\omega) = 1 \text{ if } j\leq k \Rightarrow \text{sup}_{i=1}I_{A_i}(\omega) = 1, \text{ also } \lim_{i\rightarrow\infty} I_{A_i}(\omega) = 1
+\end{equation*}
+
+\textbf{Case 2:} $\omega \notin \cup_{i=1}^{\infty}A_i$
+
+\begin{equation*}
+    \omega \notin \cup_{i=1}^{\infty}A_i \Rightarrow \omega \notin A_i \forall i \Rightarrow I_{A_i}(\omega) = 0 \forall i
+\end{equation*}
+
+Then, the LHS of 5 = 0. Hence $\text{sup}_{i=1}I_{A_i}(\omega) = 0, \text{ also } \lim_{i\rightarrow\infty} I_{A_i}(\omega) = 0$, and 5 holds.
+
+\underline{\textbf{Proof of Property of Probability}}
+\begin{itemize}
+    \item Since $I(\cup_{i=1}^\infty A_i) = \lim_{i\rightarrow\infty}I(A_i)$, then $\mathbb{P}(\cup_{i=1}^\infty A_i) = E(\lim_{i\rightarrow\infty}I(A_i))$.
+    \item Since $A_1 \subset A_2 \subset ...$, then $I(A_1) \leq I(A_2) \leq ...$. Hence $I(A_i)$ is a sequence of \textbf{monotonic increasing RVs} and $\lim_{i\rightarrow\infty}I(A_i) = I(\cup_{i=1}^\infty A_i)$.
+    \item \textbf{Axiom 4} $\Rightarrow$ $\mathbb{P}(\cup_{i=1}^\infty A_i) = \lim_{i\rightarrow\infty}E[I(A_i)] = \lim_{i\rightarrow\infty}\mathbb{P}(A_i) \Longleftrightarrow \mathbb{P}(\cup_{i=1}^\infty A_i) = \sum_{i=1}^{\infty}P(A_i)$, if $A_i$ is disjoint.
+\end{itemize}
+
+
+
+
+
+
+\begin{thm} $\Omega$ is a discrete space with elements $\{\omega_1, \omega_2\, ...\}$ if and only if the the expectation operator takes the form:
+    \begin{equation*}
+        EX = \sum_{i=1}^kP_iX(\omega_i) \text{ where } \mathbb{P}_i \geq 0 \text{ and } \sum_{i=1}^k\mathbb{P}_i = 1
+    \end{equation*}
+\end{thm}
+
+
+
+\underline{\textbf{Proof:}} $\Rightarrow$ Note: $X(\omega) = \sum_{i=1}^kI(\omega=\omega_i)X(\omega_i)$ \textbf{ -- HOMEWORK}
+\begin{itemize}
+    \item $I(\omega = \omega_i) = \begin{cases}
+        1 \hspace{0.5cm} \text{ if }\omega = \omega_i \\
+        0 \hspace{0.5cm} \text{ otherwise}
+    \end{cases}$
+    \item \textbf{Hint:} Divide cases into k cases: $\omega = \omega_1$ or $\omega_2$ or ... $\omega_k$.
+    \item Take expectation of above statement:
+    \begin{equation*}
+        EX = \sum_{i=1}^kEI\{\omega=\omega_i\}X(\omega_i) = \sum_{i=1}^k\mathbb{P}(\omega_i)X(\omega_i)
+    \end{equation*}
+\end{itemize}
+\begin{exmp}
+    Throw a four-faced die: $\Omega = \{1, 2, 3, 4\}$. Then $X: \Omega \rightarrow \mathbb{R}$ and
+    \begin{equation*}
+        X(\omega) = I\{\omega=1\}X(1) + I\{\omega=2\}X(2) + I\{\omega=3\}X(3) + I\{\omega=4\}X(4) 
+    \end{equation*}
+    We are writing the random variable $X(\omega)$ as a sum of the 4 cases, each being its own random variable. $X(i), i=\{1, 2, 3, 4\}$ are all constants, determined from any arbitrary function.
+\end{exmp}
+
+$\Leftarrow$ If $EX = \sum_{i=1}^k\mathbb{P}_iX(\omega_i)$ with $\mathbb{P} \geq 0, then \sum_{i=1}^k\mathbb{P}_i = 1$. We need to show that $\Omega$ is discrete, $i.e) \Omega = \{\omega_1, ..., \omega_k\}$.
+
+\begin{itemize}
+    \item Take $X = I\{\omega = \omega_i\} \Longrightarrow$ LHS = $\mathbb{P}(\omega_i)$, RHS = $\mathbb{P}_i$ $\Longrightarrow \mathbb{P}(\omega_i) = \mathbb{P}_i$.
+    \item Similarly, $\p(\cup_{i=1}^k\{\omega_i\}) = \sum_{i=1}^k\p(\omega_i) = 1$.
+    \item $\cup_{i=1}^k\omega_i$ is essentially the whole sample space $\Longrightarrow \Omega$ is essentially a discrete space with realizations $\omega_1, ..., \omega_k$.
+\end{itemize}
+
+\begin{exmp}
+    \textbf{Continuous Random Variables}
+
+    $\Omega = \mathbb{R}:$ we say that $X$ is a continuous RV if there exists a function $f$ with $f\geq 0$ and $\int_{-\infty}^{\infty} f(x)dx = 1$, such that:
+    \begin{equation*}
+        EX = \int_{-\infty}^{\infty}X(\omega)f(\omega)d\omega
+    \end{equation*}
+    \textbf{Homework:} show that axioms 1, 2, 3 hold for the definition of integration.
+\end{exmp}
+
+\textbf{Remark:} Take $X(\omega) = I_A(\omega) \Longrightarrow \p(A) = \int_Af(\omega)d\omega$
+
+\begin{exmp}
+    $\Omega =$ unit circle, $X(\omega) =$ angle of $\omega$ to the positive x-axis, where $\omega \in [0, 2\pi), X(\omega) = \omega$.
+    \begin{equation*}
+        EX = \frac{\int_0^{2\pi}X(\omega)d\omega}{2\pi}
+    \end{equation*}
+    \begin{itemize}
+        \item $\omega$ is uniformly distributed on $[0, 2\pi)$.
+        \item The density function $f(\omega) = \frac{1}{2\pi} \forall \omega\in[0, 2\pi)$
+    \end{itemize}
+\end{exmp}
+
+\textbf{Note:} If $\omega_0 \in [0, 2\pi)$, we can derive that $\p(\omega_0) = 0 \forall \omega_0$, where $\omega_0$ is a \textbf{zero-probability event}. This does not mean that $\omega_0$ is impossible to be taken.

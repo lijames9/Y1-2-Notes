@@ -1,0 +1,100 @@
+\section{Lecture 3}
+
+\begin{exmp}\textbf{Fatou's Lemma:}
+    $\Omega = (0,1)$, $U(\omega) = \omega$ $\forall \omega \in (0,1)$ with:
+    \begin{equation*}
+        x_i(\omega) = \begin{cases}
+            1 \hspace{0.5cm} \text{ if }\omega \in (0, \frac{1}{i}) \\
+            0 \hspace{0.5cm} \text{ else }
+        \end{cases}
+    \end{equation*}
+     $X_i(\omega) \rightarrow_{i\rightarrow\infty} 0$ $\forall \omega\in(0,1)$, which makes sense because as $\frac{1}{i} \rightarrow \infty$, the bound that $\omega$ can exist in approaches 0. Similarly, $E[X_i] \rightarrow_{i\rightarrow\infty} 1$, which is greater than 0. As such, we can make the claim that:
+     \begin{equation*}
+         \liminf_iE[X_i] = 1 > E[X]
+     \end{equation*}
+\end{exmp}
+
+\underline{\textbf{Proof of Dominated Convergence Theorem:}} The dominated convergence theorem states that:
+\begin{equation*}
+    X_i(\omega) \rightarrow X(\omega) \hspace{0.3cm} \forall \omega \in \Omega, |X_i(\omega)| \leq Y(\omega) \hspace{0.3cm} \forall \omega  \in \Omega, \&  \hspace{0.13cm}E[Y] < \infty, \text{ then } E[X_i] \rightarrow E[X]
+\end{equation*}
+
+We can draw 2 cases, conforming to the 2 cases due to the absolute operator \textbf{---} $X_i(\omega) \leq Y(\omega) \Rightarrow Y(\omega) - X_i(\omega) \geq 0$ \textbf{(case 1)} and $-X_i(\omega) \leq Y(\omega) \Rightarrow X_i(\omega) + Y(\omega) \geq 0$ \textbf{(case 2)}:
+
+\textbf{Case 1:} let $Z_i(\omega) = X_i(\omega) + Y(\omega) \geq 0$.
+
+\begin{itemize}
+    \item Using Fatou's Lemma, we know that $Z_i(\omega) \rightarrow X(\omega) + Y(\omega)$ as $i \rightarrow \infty$ $\forall \omega$. This is because we know that $X_i(\omega) \rightarrow_{i\rightarrow\infty} X(\omega)$.
+    \item We also know that $\liminf_i E[Z_i] > E[X] + E[Y]$, where $E[Z_i] = E[X_i] + E[Y]$.
+    \begin{equation*}
+        \therefore \liminf_i E[X_i] + E[Y] \geq E[X] + E[Y] \Rightarrow \liminf_i E[X_i] \geq E[X] \textbf{(*)}
+    \end{equation*}
+\end{itemize}
+
+\textbf{Case 2:} Now let $V_i(\omega) = Y(\omega) - X_i(\omega) \geq 0$.
+\begin{itemize}
+    \item Similarly, $V_i(\omega) \rightarrow Y(\omega) - X(\omega)$ $\forall \omega$.
+    \item We also know that $\liminf_i E[Z_i] > E[Y] - E[X]$, where $E[Z_i] = E[Y] - E[X_i]$.
+    \begin{equation*}
+        \therefore \liminf_i E[Y] - E[X_i] \geq E[Y] - E[X] \Rightarrow \liminf_i [-E[X_i]] \geq -E[X] \textbf{(**)}
+    \end{equation*}
+\end{itemize}
+
+\begin{rem}
+    $\limsup_ia_i = -\liminf_i(-a_i)$
+\end{rem}
+
+From \textbf{(**)} $\Rightarrow -\limsup_i E[X_i] \geq -E[X] \Rightarrow \limsup_iE[X_i] \leq E[X]$, call that \textbf{(***)}.
+
+Formulations \textbf{(*)} and \textbf{(***)} imply that:
+\begin{equation*}
+    \liminf_iE[X_i] \geq E[X] \geq \limsup_iE[X_i]
+\end{equation*}
+which does not hold except under one case because normally $\liminf_iE[X_i] \leq \limsup_iE[X_i]$
+\begin{rem}
+    Existence of a limit is defined under one case:
+    \begin{equation}
+        \liminf_iE[X_i] = E[X] = \limsup_iE[X_i]
+    \end{equation}
+    Hence:
+    \begin{equation*}
+        \lim_{i\rightarrow\infty}E[X_i] \text{ exists \& }\lim_{i\rightarrow\infty}E[X_i] = E[X]
+    \end{equation*}
+    which validates the DCT, stating that $E[X_i] \rightarrow E[X]$.
+\end{rem}
+\begin{exmp}
+    If we toss a coin many times (dependently), and:
+    \begin{equation*}
+        x_i = \begin{cases}
+            1 \hspace{0.5cm} \text{ if ith coin toss is head} \\
+            0 \hspace{0.5cm} \text{ else}
+        \end{cases}
+    \end{equation*}
+    we can assume that $\frac{1}{n}\sum_{i=1}^nx_i \rightarrow \frac{1}{2}$. We want to show that the variance Var$(\bar{X}) \rightarrow 0$ where $\bar{X} = \frac{1}{n}\sum_{i=1}^nx_i$.
+    \textbf{\underline{Proof:}} Var$(\bar{X}) = E[\bar{X}^2] - (E[\bar{X}])^2$, where $(E[\bar{X}])^2 \rightarrow \frac{1}{4}$.
+    \begin{itemize}
+        \item First, we note that $0 \leq \bar{X} \leq 1$ and $\bar{X} \rightarrow \frac{1}{2}$.
+        \item DCT will imply that $E[\bar{X}]\rightarrow E[\frac{1}{2}] = \frac{1}{2}$.
+        \item Since $\bar{X} \rightarrow \frac{1}{2}$, $\bar{X}^2 \rightarrow \frac{1}{4}$, $0 \leq \bar{X} \leq 1$, DCT$(Y=1)$, and as such, $E[\bar{X}^2] \rightarrow E[\frac{1}{4}] = \frac{1}{4}$.
+    \end{itemize}
+\end{exmp}
+\begin{defn}
+    Let A be a set in $\Omega$. Define $I_A(\omega) = \begin{cases}
+        1 \hspace{0.5cm} \text{ if } \omega \in A\\
+        0 \hspace{0.5cm} \text{ else} 
+    \end{cases}$ and $\p(A) = E[I_A(\omega)]$
+\end{defn}
+
+\subsection{Properties of Indicator Functions}
+\begin{ppty}
+    $0 \leq \mathbb{P}(A) \leq 1$
+\end{ppty}
+\begin{ppty}
+    $\mathbb{P}(A\cup B) = \mathbb{P}(A) + \mathbb{P}(B)$ if $A \cup B = \emptyset$
+\end{ppty}
+\begin{ppty}
+    $\mathbb{P}(\Omega) = 1$
+\end{ppty}
+\begin{ppty}
+    If $A_1 \subset A_2 \subset ... \rightarrow \mathbb{P}(\cup_{i=1}^{\infty}A_i) = \lim_{i\rightarrow\infty}\mathbb{P}(A_i)$ 
+\end{ppty}

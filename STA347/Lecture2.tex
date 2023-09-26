@@ -1,0 +1,99 @@
+\section{Lecture 2}
+
+\begin{defn}\textbf{Sample Space ($\Omega$)}
+    The sample space ($\Omega$) is an abstract space that contains all possible outcomes of a random experiment, where outcomes $\mathbf{\omega \in \Omega}$. For example, in a dice roll:
+    \begin{align*}
+        \Omega \in [1, 2, 3, 4, 5, 6] \\
+        \omega \in [\text{any of } \Omega]
+    \end{align*}
+\end{defn}
+\begin{defn}\textbf{Random Variable}
+    A random variable, X($\omega$) is defined as any real element in $\Omega$, or $\Omega \rightarrow \mathbb{R}$.
+    \begin{itemize}
+        \item given an event E, the RV X can be defined as an \textbf{indicator function} for E:
+        \begin{equation*}
+            I(E) = \begin{cases}
+                1 \hspace{0.5cm} \text{ if E}\\
+                0 \hspace{0.5cm} \text{ else}
+            \end{cases}
+        \end{equation*}
+        \item we define expectation E[X] for any RV X $\iff$ we want to define an expectation operator on collection of functions from $\Omega \rightarrow \mathbb{R}$.
+    \end{itemize}
+
+\end{defn}
+
+\begin{exmp}\textbf{Average operator on finite sample spaces}
+    \begin{itemize}
+        \item \textbf{sample space ($\Omega$):} consists of $n_1$ $w_1$'s, $n_2$ $w_2$'s, ..., $n_k$ $w_k$'s, where $n = n_1 + n_2 + ... + n_k$. n represents the total number of elements in $\Omega$.
+        \item \textbf{Random Variable}, $X(\omega)$: $\Omega \rightarrow \mathbb{R}$
+        \item \textbf{Average Operator}, $A(X)$:
+        \begin{equation*}
+            A(X) = \frac{1}{n}\sum_{\omega \in \Omega}X(\omega) = \sum_{i=1}^k\frac{n_i}{n}X(\omega_i) = \sum_{i=1}^kp_iX(\omega_i)  
+        \end{equation*}
+        where $p_i$ is the proportion of contribution by each $n_i$ on the average, and $p_1 + ... + p_k = 1, p_i \geq 0$.
+        \item \textbf{Properties of A:}
+        \begin{enumerate}
+            \item If X $\geq$ 0, $A(X) \geq 0$; average of RV is greater than 0 if RV is greater than 0.
+            \item If X,Y are RVs, then $A(c_1X + c_2Y) = c_1A(X) + c_2A(Y)$, where $c_1, c_2 \in \mathbb{R}$, \textbf{basically A is a linear operator.}
+            \item A(1) = 1: \textbf{normalization}
+        \end{enumerate}
+    \end{itemize}
+\end{exmp} 
+
+\subsection{Axioms of Expectation (E[X])}
+
+The operator E is called an \textbf{expectation operator} if it satisfies the following 4 axioms:
+\begin{axiom}
+    If $X(\omega) \geq 0$, $E[X(\omega)] \geq 0$.
+\end{axiom}
+\begin{axiom}
+    If X, Y are RVs, then $E[c_1X + c_2Y] = c_1E[X] + c_2E[Y]$, where $c_1, c_2 \in \mathbb{R}$.
+\end{axiom}
+\begin{axiom}
+    $E[1] = 1$.
+\end{axiom}
+\begin{axiom}
+    Given a sequence of RVs, $X_1, X_2, ..., X_n \geq 0$, and $X_i(\omega) \uparrow X(\omega)$ \textbf{\textit{(converge monotonically to X)}} $ \forall \omega \in \Omega$ as $i \rightarrow \infty$, then $E[X_i] \uparrow E[X]$ as $i\rightarrow\infty$.
+\end{axiom}
+\begin{rem}
+    Axiom 4 does not state that if $X_i$ converges to $X$, then $E[X_i]$ converges to $E[X]$.
+\end{rem} 
+
+\begin{exmp}\textbf{Counterexample to Axiom 4}
+    Let $\Omega = (0, 1)$, and U be a uniform RV on (0, 1):
+
+    \begin{equation*}
+        X_i = \begin{cases}
+            i \hspace{0.5cm} \text{if } U\in (0,\frac{1}{i}) \\
+            0 \hspace{0.5cm} \text{else}
+        \end{cases}
+    \end{equation*}
+    
+    then $\forall \omega \in (0,1)$, $X_i(\omega) \rightarrow 0$, but $E[X_i] = i(\frac{1}{i}) = 1$ $\forall i$. This examples counters the note of convergence vs monotonic convergence.
+\end{exmp}
+      
+\begin{itemize}
+    \item \textbf{Why is this not monotonic?} Just try $\omega = \frac{1}{4}$! With $\omega = \frac{1}{4}$, we can limit the sample space to $\Omega = (0, \frac{1}{4})$, and similarly $U \in (0, \frac{1}{4})$. 
+    \item Try different $i$'s: $X_1(\omega) = 1$, $X_2(\omega) = 2$, ..., $X_4(\omega) = 0$, which is not monotonically increasing.
+\end{itemize}
+
+\subsection{Properties of Expectation (E[X])}
+
+\begin{ppty}
+    $E[c_1X_1 + c_2X_2 + ... + c_kX_k] = c_1E[X_1] + c_2E[X_2] + ... + c_kE[X_k]$
+\end{ppty}
+\begin{ppty}
+    If $X(\omega) \leq Y(\omega)$, then $E[X] \leq E[Y]$.
+\end{ppty}
+\begin{ppty}
+    If $X(\omega) \leq Y(\omega)$, then $E[X] \leq E[Y]$.
+\end{ppty}
+\begin{ppty}\textbf{(Fatou's Lemma)} 
+    $\big|E[X]\big| \leq E[|X|]$, see \texttt{proof below}. If $X_n(\omega) \leq 0$ \& $X_n(\omega) \rightarrow X(\omega)$ as $n \rightarrow \infty$, then:
+    \begin{equation*}
+        \liminf_{n}E[X_n] \geq E[X]
+    \end{equation*}
+\end{ppty}
+\begin{ppty} \textbf{(Dominated Convergence Theorem)}
+    If $X_n(\omega) \rightarrow X(\omega)$ and $|X_n(\omega)| \leq Y(\omega)$ $\forall n, \omega$ and $E[Y] \leq \infty$, then $E[X_n] \rightarrow E[X]$
+\end{ppty}

@@ -1,0 +1,39 @@
+\section{Lecture 1}
+
+\begin{itemize}
+    \item In the everyday world, probability models are used to describe stochastic and random events.
+    \item \textbf{What is random?} $\longrightarrow$ it is when an outcome of an event is uncertain.
+\end{itemize}
+
+\begin{defn}\textbf{Expectation}
+    \begin{itemize}
+        \item Structured randomness is categorized by \textbf{long-term stability}. For instance, if we repeat an experiment many times, where the results are $x_1$, $x_2$, ..., $x_N$, then the average
+        \begin{equation*}
+            \frac{1}{N}(x_1 + x_2 + ... + x_N)
+        \end{equation*}
+        will stabilize and converge to a limit as $N \rightarrow \infty$.
+        \item This limit is called the \textbf{expectation of X (E[X])}.
+    \end{itemize}
+\end{defn}
+
+\begin{rem}
+    Traditional and studied probability models do not capture instances where the limit of the average as $N \rightarrow \infty$ does not converge to a value.
+\end{rem}
+
+\begin{itemize}
+    \item Now, if:
+    \begin{equation*}
+        x_i = \begin{cases}
+            1 \hspace{1.5cm} \text{if event E occurs} \\
+            0 \hspace{1.5cm} \text{else}
+        \end{cases}
+    \end{equation*}
+    then $\frac{1}{N}(x_1 + x_2 + ... + x_N)$ is equal to calculating the proportions of event E occurring.
+    \item In this case, structural randomness means the frequency of event E occurring stabilizes as $N \rightarrow \infty$, and the limit is the probability of E.
+\end{itemize}
+
+
+\begin{rem}
+    However, the expression of the average, $\frac{1}{N}(x_1 + x_2 + ... + x_N)$, is not a rigorous definition of expectation since the idea of repeating experiments to obtain an average holds no mathematical or rigorous value \textbf{--}
+not enough to fixed elements in a repeated experiment to be rigorous.
+\end{rem}
